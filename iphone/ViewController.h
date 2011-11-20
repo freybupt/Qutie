@@ -11,7 +11,7 @@
 #import "ZBarReaderViewController.h"
 #import <AVFoundation/AVAudioPlayer.h>
 
-@interface ViewController : UIViewController <ZBarReaderDelegate> {
+@interface ViewController : UIViewController <ZBarReaderDelegate, UIWebViewDelegate> {
     
     NSMutableArray *listItems;
     ZBarReaderViewController *reader;
@@ -34,5 +34,6 @@
 //@property (nonatomic, retain) IBOutlet UIWindow *window;
 //@property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
 - (void)initReader:(NSInteger)src;
+- (void)dismissCamera;
 
 @end

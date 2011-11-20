@@ -11,14 +11,14 @@
 
 @implementation WebViewController
 
-@synthesize webView;
+@synthesize webView, urlAddress;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-	if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-		// Initialization code
-	}
-	return self;
-}
+//- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+//	if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+//		// Initialization code
+//	}
+//	return self;
+//}
 
 /*
  Implement loadView if you want to create a view hierarchy programmatically
@@ -30,7 +30,7 @@
  If you need to do additional setup after loading the view, override viewDidLoad. */
 - (void)viewDidLoad {
 	
-	NSString *urlAddress = @"";
+//	NSString *urlAddress = @"";
 	
 	//Create a URL object.
 	NSURL *url = [NSURL URLWithString:urlAddress];
@@ -41,6 +41,7 @@
 	//Load the request in the UIWebView.
 	[webView loadRequest:requestObj];
 }
+
 
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

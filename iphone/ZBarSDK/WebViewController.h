@@ -12,8 +12,10 @@
 @interface WebViewController : UIViewController {
 	
 	IBOutlet UIWebView *webView;
+    NSString *urlAddress;
 }
 
 @property (nonatomic, retain) UIWebView *webView;
+@property (nonatomic, retain) NSString *urlAddress;
 
 @end

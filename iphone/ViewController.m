@@ -10,11 +10,19 @@
 #import <CommonCrypto/CommonDigest.h>
 #import "WebViewController.h"
 
+//@interface UIScrollView (extended)
+//- (void)setAllowsRubberBanding:(BOOL)allowsRubberBanding;
+//@end
+
+
+
 @implementation ViewController
 
 @synthesize listItems, reader, overlay, webView;
 
 //@synthesize window, navigationController;
+
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -27,8 +35,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+//    [(UIScrollView*)[webView.subviews objectAtIndex:0]	 setAllowsRubberBanding:NO];
 	// Do any additional setup after loading the view, typically from a nib.
 //        [webView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"cavastest" ofType:@"html"]isDirectory:NO]]];
+    webView.delegate = self;
     
 }
 
@@ -42,6 +52,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"index" ofType:@"html"]isDirectory:NO]]];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -69,7 +80,7 @@
         // use a custom overlay
         reader.showsZBarControls = NO;
         overlay = [ReaderOverlayView new];
-//        overlay.delegate = self;
+        overlay.delegate = self;
     } else {
         reader = (id)[ZBarReaderController new];
     }
@@ -135,22 +146,48 @@
     
     NSString *resultString = sym.data;
     
-    [picker dismissModalViewControllerAnimated: YES];
+    [self performSelector: @selector(dismissCamera)
+               withObject: nil
+               afterDelay: 2.0];
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Got it!" message:resultString delegate:self cancelButtonTitle:nil otherButtonTitles:@"Feed it!", nil];
-    [alert show];
+    
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Got it!" message:resultString delegate:self cancelButtonTitle:nil otherButtonTitles:@"Feed it!", nil];
+//    [alert show];
+    
 	
-//    resultString = @"http://209.87.59.177/w/qutie/";
 	//Create a URL object from scaned link
-	NSURL *url = [NSURL URLWithString:resultString];
+//	NSURL *url = [NSURL URLWithString:resultString];
 	
+    //load the image if it's a image
+//    NSString *headerUrl = [resultString substringToIndex:4];
+//    if([headerUrl isEqualToString:@"http"]){
+//        WebViewController *newWebView = [[WebViewController alloc] initWithNibName:@"WebViewController" bundle:nil];
+//        newWebView.title = @"Qutie";
+//        newWebView.urlAddress = resultString;
+//        NSURLRequest *newRequestObj = [NSURLRequest requestWithURL:url];     
+//        
+//        //Load the request in the UIWebView.
+//        [newWebView.webView loadRequest:newRequestObj];
+
+//        [self presentModalViewController:newWebView animated:NO];
+//    }
+//    else{
+//        [webView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"index" ofType:@"html"]isDirectory:NO]]];
+        
+//    }
+
+    
+    //add credit to it if it's not image and open website
+    
+    
+    
 	//URL Requst Object
-	NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];     
+//	NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];     
 	
 	//Load the request in the UIWebView.
 //	[webView loadRequest:requestObj];
     
-    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"index" ofType:@"html"]isDirectory:NO]]];
+    
     
     [self performSelector: @selector(playBeep)
                    withObject: nil
@@ -159,6 +196,20 @@
     
 }
 
+- (void)dismissCamera{
+    [self dismissModalViewControllerAnimated: NO];
+
+}
+- (void)webViewDidFinishLoad:(UIWebView *)wView {
+    NSString *someHTML = [wView stringByEvaluatingJavaScriptFromString:@"document.getElementsByClassName('box')[0]"];   
+    NSString *allHTML = [wView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"];
+    NSLog(@"someHTML: %@", someHTML);
+    NSLog(@"allHTML: %@", allHTML);
+    NSString *testString = @"http://www.google.com";
+    [webView stringByEvaluatingJavaScriptFromString:testString];
+    NSString* script = [NSString stringWithFormat:@"loadLink(%@);", testString];
+    [webView stringByEvaluatingJavaScriptFromString:script];
+}
 
 - (void) initAudio {
     if(beep)
@@ -167,7 +218,7 @@
     beep = [[AVAudioPlayer alloc]
             initWithContentsOfURL:
             [[NSBundle mainBundle]
-             URLForResource: @"scan"
+             URLForResource: @"crunching"
              withExtension: @"wav"]
             error: &error];
     if(!beep)
@@ -226,7 +277,7 @@
             [overlay willAppear];
         }
         
-        [self presentModalViewController:reader animated:NO];
+        [self presentModalViewController:reader animated:YES];
     }
     else {
         NSString *title, *message;

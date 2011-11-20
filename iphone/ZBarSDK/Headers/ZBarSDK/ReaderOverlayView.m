@@ -61,6 +61,12 @@
     label.font = [UIFont boldSystemFontOfSize: 18];
     label.userInteractionEnabled = YES;
     [tipView addSubview: label];
+    
+    UIImageView *subview = [[UIImageView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 280.0f)];
+    
+    
+    [subview setImage:[UIImage imageNamed:@"openMouth.png"]]; 
+    [self addSubview:subview];
 
     UIButton *button =
         [UIButton buttonWithType: UIButtonTypeCustom];

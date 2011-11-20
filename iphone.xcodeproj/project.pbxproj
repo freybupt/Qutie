@@ -43,14 +43,28 @@
 		58122E3D1478654D00497EC9 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58122E3C1478654D00497EC9 /* SystemConfiguration.framework */; };
 		58122E3F1478656E00497EC9 /* libzbar.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58122E3E1478656E00497EC9 /* libzbar.a */; };
 		58122E41147865FA00497EC9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58122E40147865FA00497EC9 /* QuartzCore.framework */; };
-		58122E43147867D600497EC9 /* scan.wav in Resources */ = {isa = PBXBuildFile; fileRef = 58122E42147867D600497EC9 /* scan.wav */; };
-		58122E6D1478793500497EC9 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 58122E6A1478793500497EC9 /* icon.png */; };
-		58122E6E1478793500497EC9 /* icon_yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = 58122E6B1478793500497EC9 /* icon_yellow.png */; };
-		58122E6F1478793500497EC9 /* canvastest.html in Resources */ = {isa = PBXBuildFile; fileRef = 58122E6C1478793500497EC9 /* canvastest.html */; };
-		58122E7414787A3B00497EC9 /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = 58122E7114787A3A00497EC9 /* default.png */; };
-		58122E7514787A3B00497EC9 /* qutie.js in Sources */ = {isa = PBXBuildFile; fileRef = 58122E7214787A3A00497EC9 /* qutie.js */; };
-		58122E7614787A3B00497EC9 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 58122E7314787A3A00497EC9 /* index.html */; };
-		58F1C1AD147886C2001E6CE8 /* pet.png in Resources */ = {isa = PBXBuildFile; fileRef = 58F1C1AC147886C2001E6CE8 /* pet.png */; };
+		58CB815D1478D0820063564B /* crunching.wav in Resources */ = {isa = PBXBuildFile; fileRef = 58CB81571478D0820063564B /* crunching.wav */; };
+		58CB815E1478D0820063564B /* snoring.wav in Resources */ = {isa = PBXBuildFile; fileRef = 58CB81581478D0820063564B /* snoring.wav */; };
+		58CB815F1478D0820063564B /* spring.wav in Resources */ = {isa = PBXBuildFile; fileRef = 58CB81591478D0820063564B /* spring.wav */; };
+		58CB81601478D0820063564B /* dance.wav in Resources */ = {isa = PBXBuildFile; fileRef = 58CB815A1478D0820063564B /* dance.wav */; };
+		58CB81611478D0820063564B /* egg-cracking.wav in Resources */ = {isa = PBXBuildFile; fileRef = 58CB815B1478D0820063564B /* egg-cracking.wav */; };
+		58CB81621478D0820063564B /* scan.wav in Resources */ = {isa = PBXBuildFile; fileRef = 58CB815C1478D0820063564B /* scan.wav */; };
+		58CB816E1478D0910063564B /* MenuButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 58CB81631478D0910063564B /* MenuButton.png */; };
+		58CB816F1478D0910063564B /* Header.png in Resources */ = {isa = PBXBuildFile; fileRef = 58CB81641478D0910063564B /* Header.png */; };
+		58CB81701478D0910063564B /* EatBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 58CB81651478D0910063564B /* EatBar.png */; };
+		58CB81711478D0910063564B /* Crying.png in Resources */ = {isa = PBXBuildFile; fileRef = 58CB81661478D0910063564B /* Crying.png */; };
+		58CB81721478D0910063564B /* Eating.png in Resources */ = {isa = PBXBuildFile; fileRef = 58CB81671478D0910063564B /* Eating.png */; };
+		58CB81731478D0910063564B /* Happy.png in Resources */ = {isa = PBXBuildFile; fileRef = 58CB81681478D0910063564B /* Happy.png */; };
+		58CB81741478D0910063564B /* Winking.png in Resources */ = {isa = PBXBuildFile; fileRef = 58CB81691478D0910063564B /* Winking.png */; };
+		58CB81751478D0910063564B /* Spooked.png in Resources */ = {isa = PBXBuildFile; fileRef = 58CB816A1478D0910063564B /* Spooked.png */; };
+		58CB81761478D0910063564B /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = 58CB816B1478D0910063564B /* default.png */; };
+		58CB81771478D0910063564B /* QutieEyesClosed.png in Resources */ = {isa = PBXBuildFile; fileRef = 58CB816C1478D0910063564B /* QutieEyesClosed.png */; };
+		58CB81781478D0910063564B /* QutieEyesOpen.png in Resources */ = {isa = PBXBuildFile; fileRef = 58CB816D1478D0910063564B /* QutieEyesOpen.png */; };
+		58D33BB71478BC5E0056D07A /* WebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58D33BB61478BC5E0056D07A /* WebViewController.xib */; };
+		58D33BE61478C9AA0056D07A /* qutie.js in Sources */ = {isa = PBXBuildFile; fileRef = 58D33BE21478C9AA0056D07A /* qutie.js */; };
+		58D33BE71478C9AA0056D07A /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 58D33BE31478C9AA0056D07A /* index.html */; };
+		58D33BE81478C9AA0056D07A /* qutie.css in Resources */ = {isa = PBXBuildFile; fileRef = 58D33BE41478C9AA0056D07A /* qutie.css */; };
+		58D33BE91478C9AA0056D07A /* jquery.js in Sources */ = {isa = PBXBuildFile; fileRef = 58D33BE51478C9AA0056D07A /* jquery.js */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,14 +143,28 @@
 		58122E3C1478654D00497EC9 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		58122E3E1478656E00497EC9 /* libzbar.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libzbar.a; sourceTree = "<group>"; };
 		58122E40147865FA00497EC9 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		58122E42147867D600497EC9 /* scan.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = scan.wav; path = iphone/scan.wav; sourceTree = "<group>"; };
-		58122E6A1478793500497EC9 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
-		58122E6B1478793500497EC9 /* icon_yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_yellow.png; sourceTree = "<group>"; };
-		58122E6C1478793500497EC9 /* canvastest.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = canvastest.html; sourceTree = "<group>"; };
-		58122E7114787A3A00497EC9 /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default.png; sourceTree = "<group>"; };
-		58122E7214787A3A00497EC9 /* qutie.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = qutie.js; sourceTree = "<group>"; };
-		58122E7314787A3A00497EC9 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
-		58F1C1AC147886C2001E6CE8 /* pet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pet.png; sourceTree = "<group>"; };
+		58CB81571478D0820063564B /* crunching.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = crunching.wav; path = sound/crunching.wav; sourceTree = "<group>"; };
+		58CB81581478D0820063564B /* snoring.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = snoring.wav; path = sound/snoring.wav; sourceTree = "<group>"; };
+		58CB81591478D0820063564B /* spring.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = spring.wav; path = sound/spring.wav; sourceTree = "<group>"; };
+		58CB815A1478D0820063564B /* dance.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = dance.wav; path = sound/dance.wav; sourceTree = "<group>"; };
+		58CB815B1478D0820063564B /* egg-cracking.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "egg-cracking.wav"; path = "sound/egg-cracking.wav"; sourceTree = "<group>"; };
+		58CB815C1478D0820063564B /* scan.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = scan.wav; path = sound/scan.wav; sourceTree = "<group>"; };
+		58CB81631478D0910063564B /* MenuButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MenuButton.png; path = img/MenuButton.png; sourceTree = "<group>"; };
+		58CB81641478D0910063564B /* Header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Header.png; path = img/Header.png; sourceTree = "<group>"; };
+		58CB81651478D0910063564B /* EatBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = EatBar.png; path = img/EatBar.png; sourceTree = "<group>"; };
+		58CB81661478D0910063564B /* Crying.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Crying.png; path = img/Crying.png; sourceTree = "<group>"; };
+		58CB81671478D0910063564B /* Eating.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Eating.png; path = img/Eating.png; sourceTree = "<group>"; };
+		58CB81681478D0910063564B /* Happy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Happy.png; path = img/Happy.png; sourceTree = "<group>"; };
+		58CB81691478D0910063564B /* Winking.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Winking.png; path = img/Winking.png; sourceTree = "<group>"; };
+		58CB816A1478D0910063564B /* Spooked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Spooked.png; path = img/Spooked.png; sourceTree = "<group>"; };
+		58CB816B1478D0910063564B /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = default.png; path = img/default.png; sourceTree = "<group>"; };
+		58CB816C1478D0910063564B /* QutieEyesClosed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = QutieEyesClosed.png; path = img/QutieEyesClosed.png; sourceTree = "<group>"; };
+		58CB816D1478D0910063564B /* QutieEyesOpen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = QutieEyesOpen.png; path = img/QutieEyesOpen.png; sourceTree = "<group>"; };
+		58D33BB61478BC5E0056D07A /* WebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebViewController.xib; sourceTree = "<group>"; };
+		58D33BE21478C9AA0056D07A /* qutie.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = qutie.js; sourceTree = "<group>"; };
+		58D33BE31478C9AA0056D07A /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
+		58D33BE41478C9AA0056D07A /* qutie.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = qutie.css; sourceTree = "<group>"; };
+		58D33BE51478C9AA0056D07A /* jquery.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jquery.js; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -285,6 +313,7 @@
 			children = (
 				58122E151478633A00497EC9 /* WebViewController.m */,
 				58122E161478633A00497EC9 /* WebViewController.h */,
+				58D33BB61478BC5E0056D07A /* WebViewController.xib */,
 				58122DF71478632F00497EC9 /* Headers */,
 				58122E101478632F00497EC9 /* libzbar.a */,
 				58122E111478632F00497EC9 /* Resources */,
@@ -347,14 +376,12 @@
 		58122E44147867EB00497EC9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				58122E7014787A3A00497EC9 /* img */,
-				58122E7214787A3A00497EC9 /* qutie.js */,
-				58122E7314787A3A00497EC9 /* index.html */,
-				58122E6A1478793500497EC9 /* icon.png */,
-				58122E6B1478793500497EC9 /* icon_yellow.png */,
-				58122E6C1478793500497EC9 /* canvastest.html */,
-				58F1C1AC147886C2001E6CE8 /* pet.png */,
 				58122E5014786FA100497EC9 /* sound */,
+				58CB81551478CFFC0063564B /* img */,
+				58D33BE21478C9AA0056D07A /* qutie.js */,
+				58D33BE31478C9AA0056D07A /* index.html */,
+				58D33BE41478C9AA0056D07A /* qutie.css */,
+				58D33BE51478C9AA0056D07A /* jquery.js */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -362,17 +389,32 @@
 		58122E5014786FA100497EC9 /* sound */ = {
 			isa = PBXGroup;
 			children = (
-				58122E42147867D600497EC9 /* scan.wav */,
+				58CB81571478D0820063564B /* crunching.wav */,
+				58CB81581478D0820063564B /* snoring.wav */,
+				58CB81591478D0820063564B /* spring.wav */,
+				58CB815A1478D0820063564B /* dance.wav */,
+				58CB815B1478D0820063564B /* egg-cracking.wav */,
+				58CB815C1478D0820063564B /* scan.wav */,
 			);
 			name = sound;
 			sourceTree = "<group>";
 		};
-		58122E7014787A3A00497EC9 /* img */ = {
+		58CB81551478CFFC0063564B /* img */ = {
 			isa = PBXGroup;
 			children = (
-				58122E7114787A3A00497EC9 /* default.png */,
+				58CB81631478D0910063564B /* MenuButton.png */,
+				58CB81641478D0910063564B /* Header.png */,
+				58CB81651478D0910063564B /* EatBar.png */,
+				58CB81661478D0910063564B /* Crying.png */,
+				58CB81671478D0910063564B /* Eating.png */,
+				58CB81681478D0910063564B /* Happy.png */,
+				58CB81691478D0910063564B /* Winking.png */,
+				58CB816A1478D0910063564B /* Spooked.png */,
+				58CB816B1478D0910063564B /* default.png */,
+				58CB816C1478D0910063564B /* QutieEyesClosed.png */,
+				58CB816D1478D0910063564B /* QutieEyesOpen.png */,
 			);
-			path = img;
+			name = img;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -448,13 +490,26 @@
 			files = (
 				58122DCC147862BE00497EC9 /* InfoPlist.strings in Resources */,
 				58122DD8147862BE00497EC9 /* ViewController.xib in Resources */,
-				58122E43147867D600497EC9 /* scan.wav in Resources */,
-				58122E6D1478793500497EC9 /* icon.png in Resources */,
-				58122E6E1478793500497EC9 /* icon_yellow.png in Resources */,
-				58122E6F1478793500497EC9 /* canvastest.html in Resources */,
-				58122E7414787A3B00497EC9 /* default.png in Resources */,
-				58122E7614787A3B00497EC9 /* index.html in Resources */,
-				58F1C1AD147886C2001E6CE8 /* pet.png in Resources */,
+				58D33BB71478BC5E0056D07A /* WebViewController.xib in Resources */,
+				58D33BE71478C9AA0056D07A /* index.html in Resources */,
+				58D33BE81478C9AA0056D07A /* qutie.css in Resources */,
+				58CB815D1478D0820063564B /* crunching.wav in Resources */,
+				58CB815E1478D0820063564B /* snoring.wav in Resources */,
+				58CB815F1478D0820063564B /* spring.wav in Resources */,
+				58CB81601478D0820063564B /* dance.wav in Resources */,
+				58CB81611478D0820063564B /* egg-cracking.wav in Resources */,
+				58CB81621478D0820063564B /* scan.wav in Resources */,
+				58CB816E1478D0910063564B /* MenuButton.png in Resources */,
+				58CB816F1478D0910063564B /* Header.png in Resources */,
+				58CB81701478D0910063564B /* EatBar.png in Resources */,
+				58CB81711478D0910063564B /* Crying.png in Resources */,
+				58CB81721478D0910063564B /* Eating.png in Resources */,
+				58CB81731478D0910063564B /* Happy.png in Resources */,
+				58CB81741478D0910063564B /* Winking.png in Resources */,
+				58CB81751478D0910063564B /* Spooked.png in Resources */,
+				58CB81761478D0910063564B /* default.png in Resources */,
+				58CB81771478D0910063564B /* QutieEyesClosed.png in Resources */,
+				58CB81781478D0910063564B /* QutieEyesOpen.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -494,7 +549,8 @@
 				58122DD5147862BE00497EC9 /* ViewController.m in Sources */,
 				58122E131478632F00497EC9 /* ReaderOverlayView.m in Sources */,
 				58122E171478633A00497EC9 /* WebViewController.m in Sources */,
-				58122E7514787A3B00497EC9 /* qutie.js in Sources */,
+				58D33BE61478C9AA0056D07A /* qutie.js in Sources */,
+				58D33BE91478C9AA0056D07A /* jquery.js in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
