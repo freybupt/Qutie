@@ -51,15 +51,19 @@
 //    [(UIScrollView*)[webView.subviews objectAtIndex:0]	 setAllowsRubberBanding:NO];
 	// Do any additional setup after loading the view, typically from a nib.
 //        [webView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"cavastest" ofType:@"html"]isDirectory:NO]]];
-    QTstatus = @"index_flying";
+    QTstatus = @"index_chew1";
     linkResult = @"";
+    soundTitle = @"dance";
     backButton.hidden = YES;
 //    backButton = [UIButton buttonWithType:UIButtonTypeCustom];
 //    backButton.bounds = CGRectMake(0, 0, 60.0, 30.0);
 //    [backButton setImage:[UIImage imageNamed:@"goBack.png"] forState:UIControlStateNormal];
 //    [backButton addTarget:self action:@selector(goBack:) forControlEvents:UIControlEventTouchUpInside];
     
-    
+    [self performSelector: @selector(playBeep)
+               withObject: nil
+               afterDelay: 0.001];
+
     webView.delegate = self;
     [webView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:QTstatus ofType:@"html"]isDirectory:NO]]];
     
@@ -164,6 +168,12 @@
 #pragma mark -
 #pragma mark ZBarReaderDelegate
 - (void)imagePickerController: (UIImagePickerController*) picker didFinishPickingMediaWithInfo: (NSDictionary*) info {
+    
+    [self performSelector: @selector(playBeep)
+               withObject: nil
+               afterDelay: 0.001];
+    
+    
     UIImage *image = [info objectForKey: UIImagePickerControllerOriginalImage];
     
     id <NSFastEnumeration> results = [info objectForKey: ZBarReaderControllerResults];
@@ -201,6 +211,7 @@
     //change status if qr code is defined
     if ([resultString isEqualToString:@"qutie_crying"]) {
         QTstatus = @"index_crying";
+        soundTitle = @"cry2";
     }
     
     if ([resultString isEqualToString:@"qutie_winking"]) {
@@ -208,6 +219,7 @@
     }
     if ([resultString isEqualToString:@"qutie_happy1"]) {
         QTstatus = @"index_happy1";
+        soundTitle = @"dance";
     }
     if ([resultString isEqualToString:@"qutie_happy2"]) {
         QTstatus = @"index_happy2";
@@ -220,9 +232,11 @@
     }
     if ([resultString isEqualToString:@"qutie_eating1"]) {
         QTstatus = @"index_eating1";
+
     }
     if ([resultString isEqualToString:@"qutie_eating2"]) {
         QTstatus = @"index_eating2";
+        
     }
     if ([resultString isEqualToString:@"qutie_chew1"]) {
         QTstatus = @"index_chew1";
@@ -232,10 +246,11 @@
     }
     if ([resultString isEqualToString:@"qutie_spooky"]) {
         QTstatus = @"index_spooky";
+        soundTitle = @"scream1";
     }
-    if ([resultString isEqualToString:@"qutie_drunk"]) {
-        QTstatus = @"index_drunk";
-    }
+//    if ([resultString isEqualToString:@"qutie_drunk"]) {
+//        QTstatus = @"index_drunk";
+//    }
     if ([resultString isEqualToString:@"qutie_fly"]) {
         QTstatus = @"index_flying";
     }
@@ -243,20 +258,16 @@
     if([headerUrl isEqualToString:@"http"]){
         QTstatus = @"site";
     }
+
+//    [self performSelector: @selector(dismissCamera)
+//               withObject: nil
+//               afterDelay: 1.0];
     
-    [self performSelector: @selector(dismissCamera)
-               withObject: nil
-               afterDelay: 2.0];
+    [self dismissCamera];
     
     //don't remove, for alert of link
 //    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Got it!" message:resultString delegate:self cancelButtonTitle:nil otherButtonTitles:@"Feed it!", nil];
 //    [alert show];
-    
-    
-    [self performSelector: @selector(playBeep)
-                   withObject: nil
-                afterDelay: 0.005];
-
     
 }
 
@@ -295,9 +306,27 @@
     }
 }
 
-- (void) playBeep {
+- (void) playBeep{
     if(!beep)
-        [self initAudio];
+//        [self initAudio];
+        if(beep)
+            return;
+    NSError *error = nil;
+    beep = [[AVAudioPlayer alloc]
+            initWithContentsOfURL:
+            [[NSBundle mainBundle]
+             URLForResource: soundTitle
+             withExtension: @"wav"]
+            error: &error];
+    if(!beep)
+        NSLog(@"ERROR loading sound: %@: %@",
+              [error localizedDescription],
+              [error localizedFailureReason]);
+    else {
+        beep.volume = .5f;
+        [beep prepareToPlay];
+    }
+
     [beep play];
 }
 
@@ -316,7 +345,13 @@
 
 - (IBAction)showInfo:(id)sender
 {
-    
+    if(beep){
+        [beep stop];
+    }
+    soundTitle = @"crunching";
+    [self performSelector: @selector(playBeep)
+               withObject: nil
+               afterDelay: 0.005];
     // test plain image picker
     //    UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
     // //   imagePicker.delegate = self;

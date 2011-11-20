@@ -2,127 +2,127 @@
     <head>
         <title>Qutie</title>
         <meta name="apple-mobile-web-app-capable" content="yes">
-        <meta name="viewport" content="width=device-width; initial-scale=1.0; user-scalable=0;">
-
-            <script type = "text/javascript">
-            
-            Game = {};
-            Game.fps = 24;
-            Game.qt = null;
-            Game.environment = null;
-            
-            Game.run = function(){
-            Game.update();
-            Game.draw();
-            };
-            
-            // initialize the game
-            Game.init = function(){
-            Game.environment = new Environment();
-            Game.qt = new Qutie();
-            };
-            
-            // starts the game
-            Game.start = function(){
-            Game.init();
-            Game._intervalId = setInterval(Game.run, 1000 / Game.fps);
-            };
-            
-            // pauses the game
-            Game.pause = function(){
-            clearInterval(Game._intervalId);
-            };
-            
-            // bounds
-            Game.left = function(){
-            return 0;
-            };
-            Game.right = function(){
-            return Game.environment.width;
-            };
-            Game.top = function(){
-            return 0;
-            };
-            Game.bottom = function(){
-            return Game.environment.height;
-            };
-            
-            // Vector -> Boolean
-            Game.isInBounds = function(vec){
-            return vec.x >= Game.left() &&
-            vec.x + this.qt.width <= Game.right() &&
-            vec.y >= Game.top() &&
-            vec.y <= Game.bottom(); // (0, 0) is top left!
-            }
-            
-            // Vector -> Vector
-            Game.enforceBounds = function(vec){
-            
-            if(vec.x > Game.right()){
-            vec.x = Game.right();
-            }else if(vec.x < Game.left()){
-                vec.x = Game.left();
-                }
+            <meta name="viewport" content="width=device-width; initial-scale=1.0; user-scalable=0;">
                 
-                // (0, 0) is top-left
-                if(vec.y > Game.bottom()){
-                vec.y = Game.bottom();
-                }else if(vec.y < Game.top()){
-                    vec.y = Game.top();
+                <script type = "text/javascript">
+                    
+                    Game = {};
+                    Game.fps = 24;
+                    Game.qt = null;
+                    Game.environment = null;
+                    
+                    Game.run = function(){
+                        Game.update();
+                        Game.draw();
+                    };
+                    
+                    // initialize the game
+                    Game.init = function(){
+                        Game.environment = new Environment();
+                        Game.qt = new Qutie();
+                    };
+                    
+                    // starts the game
+                    Game.start = function(){
+                        Game.init();
+                        Game._intervalId = setInterval(Game.run, 1000 / Game.fps);
+                    };
+                    
+                    // pauses the game
+                    Game.pause = function(){
+                        clearInterval(Game._intervalId);
+                    };
+                    
+                    // bounds
+                    Game.left = function(){
+                        return 0;
+                    };
+                    Game.right = function(){
+                        return Game.environment.width;
+                    };
+                    Game.top = function(){
+                        return 0;
+                    };
+                    Game.bottom = function(){
+                        return Game.environment.height;
+                    };
+                    
+                    // Vector -> Boolean
+                    Game.isInBounds = function(vec){
+                        return vec.x >= Game.left() &&
+                        vec.x + this.qt.width <= Game.right() &&
+                        vec.y >= Game.top() &&
+                        vec.y <= Game.bottom(); // (0, 0) is top left!
                     }
                     
-                    return vec;
+                    // Vector -> Vector
+                    Game.enforceBounds = function(vec){
+                        
+                        if(vec.x > Game.right()){
+                            vec.x = Game.right();
+                        }else if(vec.x < Game.left()){
+                            vec.x = Game.left();
+                        }
+                        
+                        // (0, 0) is top-left
+                        if(vec.y > Game.bottom()){
+                            vec.y = Game.bottom();
+                        }else if(vec.y < Game.top()){
+                            vec.y = Game.top();
+                        }
+                        
+                        return vec;
                     }
                     
                     // update
                     Game.update = function(){
-                    Game.qt.update();
+                        Game.qt.update();
                     };
                     
                     // draw
                     Game.draw = function(){
-                    var ctx = document.getElementById(Game.environment.canvasid).getContext('2d');
-                    ctx.clearRect(0, 0, Game.right(), Game.bottom());
-                    Game.qt.drawFace();
+                        var ctx = document.getElementById(Game.environment.canvasid).getContext('2d');
+                        ctx.clearRect(0, 0, Game.right(), Game.bottom());
+                        Game.qt.drawFace();
                     };
                     
                     Game.onclick = function(event){
-                    var xy = Game.environment.getCanvasMouseXY(event);
-                    Game.qt.onclick(xy.x, xy.y);
+                        var xy = Game.environment.getCanvasMouseXY(event);
+                        Game.qt.onclick(xy.x, xy.y);
                     }
                     
                     
                     
                     
                     function Environment(){
-                    this.width = 320;
-                    this.height = Qutie-States_0002_Happy;
-                    this.canvasid = "qt-canvas";
-                    
-                    // returns the coordinates of the canvas
-                    // null -> {x, y}
-                    this.getCanvasCoordinates = function(){
-                    return {
-                    x: Util.left(document.getElementById(this.canvasid)),
-                    y: Util.top(document.getElementById(this.canvasid))
-                    };
-                    }
-                    
-                    // returns the mouse click coordinates
-                    // null -> {x, y}
-                    this.getCanvasMouseXY = function(event){
-                    xy = Util.getMouseXY(event);
-                    xyc = this.getCanvasCoordinates();
-                    return {
-                    x: xy.x - xyc.x, 
-                    y: xy.y - xyc.y
-                    };    
-                    }
+                        this.width = 320;
+                        this.height = 400;
+                        this.canvasid = "qt-canvas";
+                        
+                        // returns the coordinates of the canvas
+                        // null -> {x, y}
+                        this.getCanvasCoordinates = function(){
+                            return {
+                                x: Util.left(document.getElementById(this.canvasid)),
+                                y: Util.top(document.getElementById(this.canvasid))
+                            };
+                        }
+                        
+                        // returns the mouse click coordinates
+                        // null -> {x, y}
+                        this.getCanvasMouseXY = function(event){
+                            xy = Util.getMouseXY(event);
+                            xyc = this.getCanvasCoordinates();
+                            return {
+                                x: xy.x - xyc.x, 
+                                y: xy.y - xyc.y
+                            };    
+                        }
                     }
                     
                     
                     function QRCode(){
-                    
+                        
                     }
                     
                     // States that QT can be in
@@ -143,408 +143,407 @@
                     
                     // TODO: offload into resource file! Not here!
                     QTStates.getImagePath = function(state){
-                    switch(state){
-                    case QTStates.eyes_open:
-                    return "QutieEyesOpen.png";
-                    break;
-                    case QTStates.eyes_closed:
-                    return "QutieEyesClosed.png";
-                    break;
-                    case QTStates.crying:
-                    return "Qutie-States_0000_Crying.png";
-                    break;
-                    case QTStates.eating:
-                    return "Qutie-States_0001_Eating.png";
-                    break;
-                    case QTStates.happy:
-                    return "Qutie-States_0002_Happy.png";
-                    break;
-                    case QTStates.winking:
-                    return "Qutie-States_0003_Winking.png";
-                    break;
-                    case QTStates.spooked:
-                    return "Qutie-States_0004_Spooked.png";
-                    break;
-                    case QTStates.flying1:
-                    return "Flying1.png";
-                    break;
-                    case QTStates.flying2:
-                    return "Flying2.png";
-                    break;
-                    case QTStates.chew1:
-                    return "Chew1.png";
-                    break;
-                    case QTStates.chew2:
-                    return "Chew2.png";
-                    break;
-                    case QTStates.eat1:
-                    return "Qutie-States_0001_Eating.png";
-                    break;
-                    case QTStates.eat2:
-                    return "Eat2.png";
-                    break;
-                    default:
-                    return "Qutie-States_0002_Happy.png";
-                    }
+                        switch(state){
+                            case QTStates.eyes_open:
+                            return "QutieEyesOpen.png";
+                            break;
+                            case QTStates.eyes_closed:
+                            return "QutieEyesClosed.png";
+                            break;
+                            case QTStates.crying:
+                            return "Qutie-States_0000_Crying.png";
+                            break;
+                            case QTStates.eating:
+                            return "Qutie-States_0001_Eating.png";
+                            break;
+                            case QTStates.happy:
+                            return "Qutie-States_0002_Happy.png";
+                            break;
+                            case QTStates.winking:
+                            return "Qutie-States_0003_Winking.png";
+                            break;
+                            case QTStates.spooked:
+                            return "Qutie-States_0004_Spooked.png";
+                            break;
+                            case QTStates.flying1:
+                            return "Flying1.png";
+                            break;
+                            case QTStates.flying2:
+                            return "Flying2.png";
+                            break;
+                            case QTStates.chew1:
+                            return "Chew1.png";
+                            break;
+                            case QTStates.chew2:
+                            return "Chew2.png";
+                            break;
+                            case QTStates.eat1:
+                            return "Qutie-States_0001_Eating.png";
+                            break;
+                            case QTStates.eat2:
+                            return "Qutie-States_0001_Eating.png";
+                            break;
+                            default:
+                            return "Qutie-States_0002_Happy.png";
+                        }
                     }
                     
                     function Qutie(){
-                    this.currentPic = new Image();
-                    this.currentPic.src = "QutieEyesOpen.png";
-                    this.width = 150.0;
-                    this.height = 130.0;            
-                    this.pos = new Vector(100.0, 100.0);    // position
-                    this.vel = new Vector(-3.0, -1.0);      // velocity
-                    this.acc = new Vector(0.0, 1.0);        // acceleration
-                    this.ctx = null;                        // canvas context
-                    this.power = {
-                    min:-2, // power bar renders 0, behavior and mood are affected though 
-                    max:7, 
-                    curr:5
-                    };   // Qutie's "power" level
-                    
-                    
-                    this.tempStateTimer = 0;
-                    
-                    this.current_emotion = QTStates.eat1;
-                    this.current_movement = null; // hack, all simple movements are stored in an array
-                    
-                    
-                    // on click
-                    this.onclick = function(x, y){
-                    if(this.isHit(x,y)){
-                    this.updateRandom();
-                    }
-                    }
-                    
-                    // if a tracking div was clicked, call this function directly
-                    this.onclickhack = function(event){
-                    alert("you clicked me!");
-                    }
-                    
-                    // major hack to try and get something clickable on the iPhone
-                    this.updateQtTracker = function(){
-                    /**
-                    * <div id="clickableInvisible" style="border: 1px solid #CCC; width: 200px; height: 200px; position: absolute; top: 75px; left: 17px;" onClick="alert('you clicked me!');"></div>
-                    </div>
-                    */
-                    var cxy = Game.environment.getCanvasCoordinates();
-                    
-                    var trackerstring =
-                    "<div id='qt-tracker' style='width:"+this.width+"px; height:"+this.height+"px; border: 1px solid #000; position:absolute; top:"+(this.pos.y+cxy.y)+"px; left:"+(this.pos.x+cxy.x)+"px;'"
-                        + "onclick='Game.qt.onclickhack(event)'>"            
-                        + "</div>";
-                    document.getElementById("clickhack").innerHTML = trackerstring;
-                    }
-                    
-                    
-                    ///////////////////////////////////////////////////////////////////////////
-                    // Updating Position
-                    ///////////////////////////////////////////////////////////////////////////
-                    
-                    // pinball bounce!
-                    this.updatePinballBounce = function(){
-                    this.updatePinballBounceX();
-                    this.updatePinballBounceY();
-                    }
-                    
-                    this.updatePinballBounceX = function(){
-                    this.pos = new Vector(this.pos.x+this.vel.x, this.pos.y);
-                    if(this.vel.x < 0){
-                        if(this.pos.x<0){
-                        this.pos.x = 0;
-                        this.vel.x = -this.vel.x;
+                        this.currentPic = new Image();
+                        this.currentPic.src = "QutieEyesOpen.png";
+                        this.width = 150.0;
+                        this.height = 130.0;            
+                        this.pos = new Vector(100.0, 100.0);    // position
+                        this.vel = new Vector(-3.0, -1.0);      // velocity
+                        this.acc = new Vector(0.0, 1.0);        // acceleration
+                        this.ctx = null;                        // canvas context
+                        this.power = {
+                            min:-2, // power bar renders 0, behavior and mood are affected though 
+                            max:7, 
+                            curr:5
+                        };   // Qutie's "power" level
+                        
+                        
+                        this.tempStateTimer = 0;
+                        
+                        this.current_emotion = QTStates.eat1;
+                        this.current_movement = null; // hack, all simple movements are stored in an array
+                        
+                        
+                        // on click
+                        this.onclick = function(x, y){
+                            if(this.isHit(x,y)){
+                                this.updateRandom();
+                            }
                         }
-                        }else{
-                        if(this.pos.x+this.width > Game.right()){
-                        this.pos.x = Game.right()-this.width;
-                        this.vel.x = -this.vel.x;
+                        
+                        // if a tracking div was clicked, call this function directly
+                        this.onclickhack = function(event){
+                            alert("you clicked me!");
                         }
+                        
+                        // major hack to try and get something clickable on the iPhone
+                        this.updateQtTracker = function(){
+                            /**
+                             * <div id="clickableInvisible" style="border: 1px solid #CCC; width: 200px; height: 200px; position: absolute; top: 75px; left: 17px;" onClick="alert('you clicked me!');"></div>
+                             </div>
+                             */
+                            var cxy = Game.environment.getCanvasCoordinates();
+                            
+                            var trackerstring =
+                            "<div id='qt-tracker' style='width:"+this.width+"px; height:"+this.height+"px; border: 1px solid #000; position:absolute; top:"+(this.pos.y+cxy.y)+"px; left:"+(this.pos.x+cxy.x)+"px;'"
+                            + "onclick='Game.qt.onclickhack(event)'>"            
+                            + "</div>";
+                            document.getElementById("clickhack").innerHTML = trackerstring;
                         }
+                        
+                        
+                        ///////////////////////////////////////////////////////////////////////////
+                        // Updating Position
+                        ///////////////////////////////////////////////////////////////////////////
+                        
+                        // pinball bounce!
+                        this.updatePinballBounce = function(){
+                            this.updatePinballBounceX();
+                            this.updatePinballBounceY();
+                        }
+                        
+                        this.updatePinballBounceX = function(){
+                            this.pos = new Vector(this.pos.x+this.vel.x, this.pos.y);
+                            if(this.vel.x < 0){
+                                if(this.pos.x<0){
+                                    this.pos.x = 0;
+                                    this.vel.x = -this.vel.x;
+                                }
+                            }else{
+                                if(this.pos.x+this.width > Game.right()){
+                                    this.pos.x = Game.right()-this.width;
+                                    this.vel.x = -this.vel.x;
+                                }
+                            }
                         }
                         
                         
                         this.updatePinballBounceY = function(){
-                        this.pos = new Vector(this.pos.x, this.pos.y+this.vel.y);
-                        if(this.vel.y < 0){
-                            if(this.pos.y<0){
-                            this.pos.y = 0;
-                            this.vel.y = -this.vel.y;
-                            }
+                            this.pos = new Vector(this.pos.x, this.pos.y+this.vel.y);
+                            if(this.vel.y < 0){
+                                if(this.pos.y<0){
+                                    this.pos.y = 0;
+                                    this.vel.y = -this.vel.y;
+                                }
                             }else{
-                            if(this.pos.y+this.height > Game.bottom()){
-                            this.pos.y = Game.bottom()-this.height;
-                            this.vel.y = -this.vel.y;
+                                if(this.pos.y+this.height > Game.bottom()){
+                                    this.pos.y = Game.bottom()-this.height;
+                                    this.vel.y = -this.vel.y;
+                                }
                             }
-                            }
-                            }
-                            
-                            // a horizontal marquee movement
-                            this.updateHorizontalMarquee = function(){
+                        }
+                        
+                        // a horizontal marquee movement
+                        this.updateHorizontalMarquee = function(){
                             this.pos = new Vector(this.pos.x+this.vel.x, this.pos.y);
                             
                             // warp to other size once past boundary
                             if(this.vel.x < 0){ // moving left
                                 if(this.pos.x+this.width < 0) this.pos.x = Game.right();
-                                }else{ // moving right
+                            }else{ // moving right
                                 if(this.pos.x > Game.right()) this.pos.x = 0-this.width;
-                                }
-                                }
-                                
-                                // updates the movement to a gravity-based bounce, constrained in the canvas
-                                // remember to set sane amounts for vel and acc first
-                                this.updateBounceCanvas = function(){
-                                this.vel = new Vector(this.vel.x+this.acc.x, this.vel.y+this.acc.y);
-                                this.pos = new Vector(this.pos.x+this.vel.x, this.pos.y+this.vel.y);
-                                
-                                
-                                var pos_x_r = parseInt(this.pos.x) + parseInt(this.width);
-                                
-                                // enforce bounds
-                                if(!Game.isInBounds(this.pos)){
+                            }
+                        }
+                        
+                        // updates the movement to a gravity-based bounce, constrained in the canvas
+                        // remember to set sane amounts for vel and acc first
+                        this.updateBounceCanvas = function(){
+                            this.vel = new Vector(this.vel.x+this.acc.x, this.vel.y+this.acc.y);
+                            this.pos = new Vector(this.pos.x+this.vel.x, this.pos.y+this.vel.y);
+                            
+                            
+                            var pos_x_r = parseInt(this.pos.x) + parseInt(this.width);
+                            
+                            // enforce bounds
+                            if(!Game.isInBounds(this.pos)){
                                 if(pos_x_r > Game.right()){
-                                this.pos.x = parseInt(Game.right())-parseInt(this.width);
-                                this.vel.x = -this.vel.x;
+                                    this.pos.x = parseInt(Game.right())-parseInt(this.width);
+                                    this.vel.x = -this.vel.x;
                                 }else if(this.pos.x < Game.left()){
                                     this.pos.x = Game.left();
                                     this.vel.x = -this.vel.x;
-                                    }
-                                    
-                                    // (0, 0) is top-left
-                                    if(this.pos.y > Game.bottom()){
+                                }
+                                
+                                // (0, 0) is top-left
+                                if(this.pos.y > Game.bottom()){
                                     this.pos.y = Game.bottom();
                                     this.vel.y = -this.vel.y;
-                                    }else if(this.pos.y < Game.top()){
+                                }else if(this.pos.y < Game.top()){
                                     this.pos.y = Game.top();
                                     this.vel.y = -this.vel.y;
-                                    } 
-                                    }
-                                    }
-                                    
-                                    
-                                    // updates the  current simple movement with one of the registered functions
-                                    // TODO: do this in a better way!
-                                    this.updateRandom = function(){
-                                    // register all of the zero-parameter movements here
-                                    var array_of_simple_movements = [
-                                    this.updateBounceCanvas,
-                                    this.updateHorizontalMarquee,
-                                    this.updatePinballBounce,
-                                    this.updatePinballBounceX,
-                                    this.updatePinballBounceY,
-                                    ];
-                                    
-                                    this.current_movement = array_of_simple_movements[
-                                    Util.randInt(array_of_simple_movements.length)];
-                                    }
-                                    
-                                    ///////////////////////////////////////////////////////////////////////////
-                                    // Controller
-                                    ///////////////////////////////////////////////////////////////////////////
-                                    
-                                    // update
-                                    this.update = function(){
-                                    
-                                    if(this.current_movement == null)this.updateRandom();
-                                    this.current_movement();
-                                    
-                                    //this.updateBounceCanvas();
-                                    //this.updateQtTracker();
-                                    }
-                                    
-                                    
-                                    ///////////////////////////////////////////////////////////////////////////
-                                    // Put all drawing functions here
-                                    ///////////////////////////////////////////////////////////////////////////
-                                    
-                                    // draw
-                                    this.draw = function(){
-                                    this.drawFace();
-                                    };
-                                    
-                                    // draw QT face
-                                    this.drawFace = function(){
-                                    // if(this.ctx == null) return;
-                                    
-                                    // TODO: test if has context
-                                    ctx = document.getElementById(Game.environment.canvasid).getContext('2d');
-                                    
-                                    this.currentPic = new Image();
-                                    this.currentPic.src = QTStates.getImagePath(this.current_emotion);
-                                    this.drawCurrentPicture(ctx);
-                                    
-                                    };
-                                    
-                                    // Draws the current picture
-                                    this.drawCurrentPicture = function(ctx){
-                                    ctx.drawImage(this.currentPic, this.pos.x, this.pos.y, this.width, this.height);
-                                    //Util.drawPicByDiv(this.currentPic.src, this.pos.x, this.pos.y, this.width, this.height);
-                                    }
-                                    
-                                    
-                                    ///////////////////////////////////////////////////////////////////////////
-                                    // Put all state changing functions here
-                                    ///////////////////////////////////////////////////////////////////////////
-                                    
-                                    this.closeEyes = function(){
-                                    this.state_eyes = QTStates.eyes_closed;
-                                    }
-                                    
-                                    this.openEyes = function(){
-                                    this.state_eyes = QTStates.eyes_open;
-                                    }
-                                    
-                                    this.toggleEyes = function(){
-                                    if(this.state_eyes == QTStates.eyes_closed){
-                                    this.openEyes();
-                                    }else{
-                                    this.closeEyes();
-                                    }
-                                    }
-                                    
-                                    ///////////////////////////////////////////////////////////////////////////
-                                    // Util
-                                    ///////////////////////////////////////////////////////////////////////////
-                                    this.isHit = function(x, y){
-                                    return ((this.pos.x < x && x < (this.pos.x + this.width)) &&
+                                } 
+                            }
+                        }
+                        
+                        
+                        // updates the  current simple movement with one of the registered functions
+                        // TODO: do this in a better way!
+                        this.updateRandom = function(){
+                            // register all of the zero-parameter movements here
+                            var array_of_simple_movements = [
+                                                             this.updateBounceCanvas,
+                                                             this.updateHorizontalMarquee,
+                                                             this.updatePinballBounce,
+                                                             this.updatePinballBounceX,
+                                                             this.updatePinballBounceY,
+                                                             ];
+                            
+                            this.current_movement = array_of_simple_movements[
+                                                                              Util.randInt(array_of_simple_movements.length)];
+                        }
+                        
+                        ///////////////////////////////////////////////////////////////////////////
+                        // Controller
+                        ///////////////////////////////////////////////////////////////////////////
+                        
+                        // update
+                        this.update = function(){
+                            
+                            if(this.current_movement == null)this.updateRandom();
+                            this.current_movement();
+                            
+                            //this.updateBounceCanvas();
+                            //this.updateQtTracker();
+                        }
+                        
+                        
+                        ///////////////////////////////////////////////////////////////////////////
+                        // Put all drawing functions here
+                        ///////////////////////////////////////////////////////////////////////////
+                        
+                        // draw
+                        this.draw = function(){
+                            this.drawFace();
+                        };
+                        
+                        // draw QT face
+                        this.drawFace = function(){
+                            // if(this.ctx == null) return;
+                            
+                            // TODO: test if has context
+                            ctx = document.getElementById(Game.environment.canvasid).getContext('2d');
+                            
+                            this.currentPic = new Image();
+                            this.currentPic.src = QTStates.getImagePath(this.current_emotion);
+                            this.drawCurrentPicture(ctx);
+                            
+                        };
+                        
+                        // Draws the current picture
+                        this.drawCurrentPicture = function(ctx){
+                            ctx.drawImage(this.currentPic, this.pos.x, this.pos.y, this.width, this.height);
+                            //Util.drawPicByDiv(this.currentPic.src, this.pos.x, this.pos.y, this.width, this.height);
+                        }
+                        
+                        
+                        ///////////////////////////////////////////////////////////////////////////
+                        // Put all state changing functions here
+                        ///////////////////////////////////////////////////////////////////////////
+                        
+                        this.closeEyes = function(){
+                            this.state_eyes = QTStates.eyes_closed;
+                        }
+                        
+                        this.openEyes = function(){
+                            this.state_eyes = QTStates.eyes_open;
+                        }
+                        
+                        this.toggleEyes = function(){
+                            if(this.state_eyes == QTStates.eyes_closed){
+                                this.openEyes();
+                            }else{
+                                this.closeEyes();
+                            }
+                        }
+                        
+                        ///////////////////////////////////////////////////////////////////////////
+                        // Util
+                        ///////////////////////////////////////////////////////////////////////////
+                        this.isHit = function(x, y){
+                            return ((this.pos.x < x && x < (this.pos.x + this.width)) &&
                                     (this.pos.y < y && y < (this.pos.y + this.height)));
-                                    }
-                                    }
-                                    
-                                    
-                                    function Vector(x, y)
-                                    {
-                                    this.x = x; 
-                                    this.y = y; 
-                                    
-                                    this.equal = function(v)
-                                    {
-                                    return this.x == v.getX() && this.y == v.getY(); 
-                                    }
-                                    this.getX = function()
-                                    {
-                                    return this.x; 
-                                    }
-                                    this.getY = function()
-                                    {
-                                    return this.y; 
-                                    }
-                                    this.setX = function(x)
-                                    {
-                                    this.x = x; 
-                                    }
-                                    this.setY = function(y)
-                                    {
-                                    this.y = y; 
-                                    }
-                                    this.addX = function(x)
-                                    {
-                                    this.x += x; 
-                                    }
-                                    this.addY = function(y)
-                                    {
-                                    this.y += y; 
-                                    }
-                                    this.set = function(v)
-                                    {
-                                    this.x = v.getX(); 
-                                    this.y = v.getY(); 
-                                    }
-                                    this.add = function(v)
-                                    {
-                                    this.x += v.getX(); 
-                                    this.y += v.getY(); 
-                                    }
-                                    this.sub = function(v)
-                                    {
-                                    this.x -= v.getX(); 
-                                    this.y -= v.getY(); 
-                                    }
-                                    this.dotProd = function(v)
-                                    {
-                                    return this.x * v.getX() + this.y * v.getY(); 
-                                    }
-                                    this.length = function()
-                                    {
-                                    return Math.sqrt(this.x * this.x + this.y * this.y); 
-                                    }
-                                    this.scale = function(scaleFactor)
-                                    {
-                                    this.x *= scaleFactor; 
-                                    this.y *= scaleFactor; 
-                                    }
-                                    this.toString = function()
-                                    {
-                                    return " X: " + this.x + " Y: " + this.y; 
-                                    }
-                                    }
-                                    
-                                    Util = {};
-                                    
-                                    // Returns the xy position of the mouse
-                                    Util.getMouseXY = function(event){
-                                    return {
-                                    x: event.pageX, 
-                                    y:event.pageY
-                                    };
-                                    }
-                                    
-                                    // Find the left coordinate of an object
-                                    Util.left = function(obj)
-                                    {
-                                    var curleft = 0;
-                                    if (obj.offsetParent)
-                                    while (1) {
-                                    curleft += obj.offsetLeft;
-                                    if (!obj.offsetParent)
-                                    break;
-                                    obj = obj.offsetParent;
-                                    }
-                                    else if (obj.x)
-                                    curleft += obj.x;
-                                    return curleft;
-                                    }
-                                    
-                                    // Find the top coordinate of an object
-                                    Util.top = function(obj)
-                                    {
-                                    var curtop = 0;
-                                    if (obj.offsetParent)
-                                    while (1) {
-                                    curtop += obj.offsetTop;
-                                    if (!obj.offsetParent)
-                                    break;
-                                    obj = obj.offsetParent;
-                                    }
-                                    else if (obj.y)
-                                    curtop += obj.y;
-                                    return curtop;
-                                    }
-                                    
-                                    // TODO: fix, not working
-                                    Util.drawPicByDiv = function(imgStr, x, y, w, h){
-                                    document.getElementById('qt').innerHTML = 
-                                    "<div id='qtpic' style={position: fixed; left:"+x+";top:"+y+";width:"+w+"px;height:"+h+"px;}>"
-                                    +"<img src='"+imgStr+"' style={width:"+w+"; height:"+h+";}></img>"      
-                                    +"</div>";
-                                    }
-                                    
-                                    // returns a random integer
-                                    Util.randInt = function(max){
-                                    if(max < 0) return 0;
-                                    return Math.floor(Math.random()*max);
-                                    }
-            </script>
-        <link rel="stylesheet" type="text/css" href="qutie.css" />
-    </head>
+                        }
+                    }
+                    
+                    
+                    function Vector(x, y)
+                    {
+                        this.x = x; 
+                        this.y = y; 
+                        
+                        this.equal = function(v)
+                        {
+                            return this.x == v.getX() && this.y == v.getY(); 
+                        }
+                        this.getX = function()
+                        {
+                            return this.x; 
+                        }
+                        this.getY = function()
+                        {
+                            return this.y; 
+                        }
+                        this.setX = function(x)
+                        {
+                            this.x = x; 
+                        }
+                        this.setY = function(y)
+                        {
+                            this.y = y; 
+                        }
+                        this.addX = function(x)
+                        {
+                            this.x += x; 
+                        }
+                        this.addY = function(y)
+                        {
+                            this.y += y; 
+                        }
+                        this.set = function(v)
+                        {
+                            this.x = v.getX(); 
+                            this.y = v.getY(); 
+                        }
+                        this.add = function(v)
+                        {
+                            this.x += v.getX(); 
+                            this.y += v.getY(); 
+                        }
+                        this.sub = function(v)
+                        {
+                            this.x -= v.getX(); 
+                            this.y -= v.getY(); 
+                        }
+                        this.dotProd = function(v)
+                        {
+                            return this.x * v.getX() + this.y * v.getY(); 
+                        }
+                        this.length = function()
+                        {
+                            return Math.sqrt(this.x * this.x + this.y * this.y); 
+                        }
+                        this.scale = function(scaleFactor)
+                        {
+                            this.x *= scaleFactor; 
+                            this.y *= scaleFactor; 
+                        }
+                        this.toString = function()
+                        {
+                            return " X: " + this.x + " Y: " + this.y; 
+                        }
+                    }
+                    
+                    Util = {};
+                    
+                    // Returns the xy position of the mouse
+                    Util.getMouseXY = function(event){
+                        return {
+                            x: event.pageX, 
+                            y:event.pageY
+                        };
+                    }
+                    
+                    // Find the left coordinate of an object
+                    Util.left = function(obj)
+                    {
+                        var curleft = 0;
+                        if (obj.offsetParent)
+                        while (1) {
+                            curleft += obj.offsetLeft;
+                            if (!obj.offsetParent)
+                            break;
+                            obj = obj.offsetParent;
+                        }
+                        else if (obj.x)
+                        curleft += obj.x;
+                        return curleft;
+                    }
+                    
+                    // Find the top coordinate of an object
+                    Util.top = function(obj)
+                    {
+                        var curtop = 0;
+                        if (obj.offsetParent)
+                        while (1) {
+                            curtop += obj.offsetTop;
+                            if (!obj.offsetParent)
+                            break;
+                            obj = obj.offsetParent;
+                        }
+                        else if (obj.y)
+                        curtop += obj.y;
+                        return curtop;
+                    }
+                    
+                    // TODO: fix, not working
+                    Util.drawPicByDiv = function(imgStr, x, y, w, h){
+                        document.getElementById('qt').innerHTML = 
+                        "<div id='qtpic' style={position: fixed; left:"+x+";top:"+y+";width:"+w+"px;height:"+h+"px;}>"
+                        +"<img src='"+imgStr+"' style={width:"+w+"; height:"+h+";}></img>"      
+                        +"</div>";
+                    }
+                    
+                    // returns a random integer
+                    Util.randInt = function(max){
+                        if(max < 0) return 0;
+                        return Math.floor(Math.random()*max);
+                    }
+                    </script>
+                <link rel="stylesheet" type="text/css" href="qutie.css" />
+                </head>
     <body background="Background.png">
-
+        
         <!--<button onclick="Game.qt.toggleEyes()">Toggle Eyes</button>-->
         <div id="main-game-div">
-            <canvas id="qt-canvas" width="320" height="Qutie-States_0002_Happy" onClick="Game.onclick(event)"></canvas>
+            <canvas id="qt-canvas" width="320" height="400" onClick="Game.onclick(event)"></canvas>
             <div id="qt"></div>
             <div id="ui-elements">
-
 				<div id="powerbar">
 					<div class="first on"></div>
 					<div class="on"></div>
@@ -556,27 +555,27 @@
 				</div>
 				<div id="eatBtn">
 					<img src="EatBar.png" width="75" height="42" border="0" >
-				</div>
-        </div>
-
-        <div id="clickhack">
-        </div>
-
-
-        <script type="text/javascript">
-            document.onload = function(){
-                document.ontouchmove = function(e){ e.preventDefault(); }
-            }
-            Game.start();
+                        </div>
+            </div>
             
-        </script>
-
-        <!-- feeble attempt to prevent iPhone default scrolling behavior -->
-        <script type="text/javascript">
-            document.body.addEventListener('touchmove', function(e) {
-                e.preventDefault();
-            });
-        </script>
-        <!-- end feeble attempt -->
-    </body>
+            <div id="clickhack">
+            </div>
+            
+            
+            <script type="text/javascript">
+                document.onload = function(){
+                    document.ontouchmove = function(e){ e.preventDefault(); }
+                }
+                Game.start();
+                
+                </script>
+            
+            <!-- feeble attempt to prevent iPhone default scrolling behavior -->
+            <script type="text/javascript">
+                document.body.addEventListener('touchmove', function(e) {
+                                               e.preventDefault();
+                                               });
+                </script>
+            <!-- end feeble attempt -->
+            </body>
 </html>

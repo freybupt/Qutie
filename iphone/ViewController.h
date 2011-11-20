@@ -25,6 +25,7 @@
 //    IBOutlet UIWindow *window;
 //    IBOutlet UINavigationController *navigationController;
     IBOutlet UIButton *backButton;
+    NSString *soundTitle;
 }
 
 - (IBAction)showInfo:(id)sender;
