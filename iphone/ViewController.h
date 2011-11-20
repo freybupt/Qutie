@@ -21,8 +21,10 @@
     
     IBOutlet UIWebView *webView;
     NSString *QTstatus;
+    NSString *linkResult;
 //    IBOutlet UIWindow *window;
 //    IBOutlet UINavigationController *navigationController;
+    IBOutlet UIButton *backButton;
 }
 
 - (IBAction)showInfo:(id)sender;
@@ -31,9 +33,12 @@
 @property (nonatomic, retain) ReaderOverlayView *overlay;
 @property (nonatomic, retain) UIWebView *webView;
 
+@property (nonatomic, retain) IBOutlet UIButton *backButton;
+
 //@property (nonatomic, retain) IBOutlet UIWindow *window;
 //@property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
 - (void)initReader:(NSInteger)src;
 - (void)dismissCamera;
+- (IBAction)goBack:(id)sender;
 
 @end

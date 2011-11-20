@@ -96,7 +96,7 @@
                     
                     function Environment(){
                     this.width = 320;
-                    this.height = 460;
+                    this.height = 400;
                     this.canvasid = "qt-canvas";
                     
                     // returns the coordinates of the canvas
@@ -157,7 +157,7 @@
                     return "Qutie-States_0001_Eating.png";
                     break;
                     case QTStates.happy:
-                    return "Happy_8bit.png";
+                    return "Qutie-States_0002_Happy.png";
                     break;
                     case QTStates.winking:
                     return "Qutie-States_0003_Winking.png";
@@ -206,7 +206,7 @@
                     
                     this.tempStateTimer = 0;
                     
-                    this.current_emotion = QTStates.happy;
+                    this.current_emotion = QTStates.spooked;
                     this.current_movement = null; // hack, all simple movements are stored in an array
                     
                     
@@ -537,15 +537,13 @@
             </script>
         <link rel="stylesheet" type="text/css" href="qutie.css" />
     </head>
-    <body>
+    <body background="Background.png">
 
         <!--<button onclick="Game.qt.toggleEyes()">Toggle Eyes</button>-->
         <div id="main-game-div">
-            <canvas id="qt-canvas" width="320" height="460" onClick="Game.onclick(event)"></canvas>
+            <canvas id="qt-canvas" width="320" height="400" onClick="Game.onclick(event)"></canvas>
             <div id="qt"></div>
             <div id="ui-elements">
-				<div id="header">
-					<img src="Header.png" width="320" height="67" alt="Qutie"></div>
 				<div id="powerbar">
 					<div class="first on"></div>
 					<div class="on"></div>

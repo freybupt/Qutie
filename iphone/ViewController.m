@@ -31,7 +31,7 @@
 
 @implementation ViewController
 
-@synthesize listItems, reader, overlay, webView;
+@synthesize listItems, reader, overlay, webView, backButton;
 
 //@synthesize window, navigationController;
 
@@ -51,7 +51,15 @@
 //    [(UIScrollView*)[webView.subviews objectAtIndex:0]	 setAllowsRubberBanding:NO];
 	// Do any additional setup after loading the view, typically from a nib.
 //        [webView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"cavastest" ofType:@"html"]isDirectory:NO]]];
-    QTstatus = @"index";
+    QTstatus = @"index_flying";
+    linkResult = @"";
+    backButton.hidden = YES;
+//    backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//    backButton.bounds = CGRectMake(0, 0, 60.0, 30.0);
+//    [backButton setImage:[UIImage imageNamed:@"goBack.png"] forState:UIControlStateNormal];
+//    [backButton addTarget:self action:@selector(goBack:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
     webView.delegate = self;
     [webView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:QTstatus ofType:@"html"]isDirectory:NO]]];
     
@@ -69,9 +77,32 @@
 {
     [super viewWillAppear:animated];
     
-    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:QTstatus ofType:@"html"]isDirectory:NO]]];
+    if ([QTstatus isEqualToString:@"site"]) {
+        //Create a URL object from scaned link
+        NSURL *url = [NSURL URLWithString: linkResult];
+        
+        //URL Requst Object
+        NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];     
+        
+        backButton.hidden = NO;
+        
+        //Load the request in the UIWebView.
+        [webView loadRequest:requestObj];
+    }
+    else{
+        
+        backButton.hidden = YES;
+        [webView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:QTstatus ofType:@"html"]isDirectory:NO]]];
+    }
 }
 
+
+- (IBAction)goBack:(id)sender{
+    QTstatus = @"index";
+    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:QTstatus ofType:@"html"]isDirectory:NO]]];
+    backButton.hidden = YES;
+    
+}
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -163,6 +194,8 @@
     
     NSString *resultString = sym.data;
     
+    linkResult = resultString;
+    
     QTstatus = @"index_spooky";
     
     //change status if qr code is defined
@@ -204,51 +237,20 @@
         QTstatus = @"index_drunk";
     }
     if ([resultString isEqualToString:@"qutie_fly"]) {
-        QTstatus = @"index_fly";
+        QTstatus = @"index_flying";
     }
-    
+     NSString *headerUrl = [resultString substringToIndex:4];
+    if([headerUrl isEqualToString:@"http"]){
+        QTstatus = @"site";
+    }
     
     [self performSelector: @selector(dismissCamera)
                withObject: nil
                afterDelay: 2.0];
     
-    
+    //don't remove, for alert of link
 //    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Got it!" message:resultString delegate:self cancelButtonTitle:nil otherButtonTitles:@"Feed it!", nil];
 //    [alert show];
-    
-	
-	//Create a URL object from scaned link
-//	NSURL *url = [NSURL URLWithString:resultString];
-	
-    //load the image if it's a image
-//    NSString *headerUrl = [resultString substringToIndex:4];
-//    if([headerUrl isEqualToString:@"http"]){
-//        WebViewController *newWebView = [[WebViewController alloc] initWithNibName:@"WebViewController" bundle:nil];
-//        newWebView.title = @"Qutie";
-//        newWebView.urlAddress = resultString;
-//        NSURLRequest *newRequestObj = [NSURLRequest requestWithURL:url];     
-//        
-//        //Load the request in the UIWebView.
-//        [newWebView.webView loadRequest:newRequestObj];
-
-//        [self presentModalViewController:newWebView animated:NO];
-//    }
-//    else{
-//        [webView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"index" ofType:@"html"]isDirectory:NO]]];
-        
-//    }
-
-    
-    //add credit to it if it's not image and open website
-    
-    
-    
-	//URL Requst Object
-//	NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];     
-	
-	//Load the request in the UIWebView.
-//	[webView loadRequest:requestObj];
-    
     
     
     [self performSelector: @selector(playBeep)
@@ -262,16 +264,16 @@
     [self dismissModalViewControllerAnimated: NO];
 
 }
-- (void)webViewDidFinishLoad:(UIWebView *)wView {
-    NSString *someHTML = [wView stringByEvaluatingJavaScriptFromString:@"document.getElementsByClassName('box')[0]"];   
-    NSString *allHTML = [wView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"];
-    NSLog(@"someHTML: %@", someHTML);
-    NSLog(@"allHTML: %@", allHTML);
-    NSString *testString = @"http://www.google.com";
-    [webView stringByEvaluatingJavaScriptFromString:testString];
-    NSString* script = [NSString stringWithFormat:@"loadLink(%@);", testString];
-    [webView stringByEvaluatingJavaScriptFromString:script];
-}
+//- (void)webViewDidFinishLoad:(UIWebView *)wView {
+//    NSString *someHTML = [wView stringByEvaluatingJavaScriptFromString:@"document.getElementsByClassName('box')[0]"];   
+//    NSString *allHTML = [wView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"];
+//    NSLog(@"someHTML: %@", someHTML);
+//    NSLog(@"allHTML: %@", allHTML);
+//    NSString *testString = @"http://www.google.com";
+//    [webView stringByEvaluatingJavaScriptFromString:testString];
+//    NSString* script = [NSString stringWithFormat:@"loadLink(%@);", testString];
+//    [webView stringByEvaluatingJavaScriptFromString:script];
+//}
 
 - (void) initAudio {
     if(beep)
@@ -370,6 +372,7 @@
 {
     // Return YES for supported orientations
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+    
 }
 
 @end

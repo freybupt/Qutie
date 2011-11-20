@@ -1,8 +1,6 @@
 #ui-elements {position: absolute; top: 0; left: 0;}
-#header {position: absolute; top: 0; left: 0;}
-#buttons_eat {position: absolute; left: 0; top: 367px;}
-#buttons_menu {position: absolute; left: 267px; top: 406px;}
-#powerbar {position: absolute; top: 398px; left: 90px; height: 16px; width: 220px;}
+#buttons_eat {position: absolute; left: 0; top:300 px;}
+#powerbar {position: absolute; top: 320px; left: 90px; height: 16px; width: 220px;}
 #powerbar div {
 	border-top: 3px solid #333; 
 	border-left: none; 
@@ -11,4 +9,4 @@
 	height: 16px; width: 16px; float: left; background-color: #FFF;}
 #powerbar div.first {border-left: 3px solid #333;}
 #powerbar div.on {background-color: #ec1e79;}
-#eatBtn {position: absolute; top: 426px; left: 121px;}
+#eatBtn {position: absolute; top: 350px; left: 121px;}
