@@ -44,11 +44,13 @@
 		58122E3F1478656E00497EC9 /* libzbar.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58122E3E1478656E00497EC9 /* libzbar.a */; };
 		58122E41147865FA00497EC9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58122E40147865FA00497EC9 /* QuartzCore.framework */; };
 		58122E43147867D600497EC9 /* scan.wav in Resources */ = {isa = PBXBuildFile; fileRef = 58122E42147867D600497EC9 /* scan.wav */; };
-		58122E591478739200497EC9 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 58122E531478739200497EC9 /* index.html */; };
-		58122E5A1478739200497EC9 /* qutie.js in Sources */ = {isa = PBXBuildFile; fileRef = 58122E541478739200497EC9 /* qutie.js */; };
-		58122E5B1478739200497EC9 /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = 58122E561478739200497EC9 /* default.png */; };
-		58122E5C1478739200497EC9 /* QutieEyesClosed.png in Resources */ = {isa = PBXBuildFile; fileRef = 58122E571478739200497EC9 /* QutieEyesClosed.png */; };
-		58122E5D1478739200497EC9 /* QutieEyesOpen.png in Resources */ = {isa = PBXBuildFile; fileRef = 58122E581478739200497EC9 /* QutieEyesOpen.png */; };
+		58122E6D1478793500497EC9 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 58122E6A1478793500497EC9 /* icon.png */; };
+		58122E6E1478793500497EC9 /* icon_yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = 58122E6B1478793500497EC9 /* icon_yellow.png */; };
+		58122E6F1478793500497EC9 /* canvastest.html in Resources */ = {isa = PBXBuildFile; fileRef = 58122E6C1478793500497EC9 /* canvastest.html */; };
+		58122E7414787A3B00497EC9 /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = 58122E7114787A3A00497EC9 /* default.png */; };
+		58122E7514787A3B00497EC9 /* qutie.js in Sources */ = {isa = PBXBuildFile; fileRef = 58122E7214787A3A00497EC9 /* qutie.js */; };
+		58122E7614787A3B00497EC9 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 58122E7314787A3A00497EC9 /* index.html */; };
+		58F1C1AD147886C2001E6CE8 /* pet.png in Resources */ = {isa = PBXBuildFile; fileRef = 58F1C1AC147886C2001E6CE8 /* pet.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -128,11 +130,13 @@
 		58122E3E1478656E00497EC9 /* libzbar.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libzbar.a; sourceTree = "<group>"; };
 		58122E40147865FA00497EC9 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		58122E42147867D600497EC9 /* scan.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = scan.wav; path = iphone/scan.wav; sourceTree = "<group>"; };
-		58122E531478739200497EC9 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = index.html; path = iphone/index.html; sourceTree = "<group>"; };
-		58122E541478739200497EC9 /* qutie.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = qutie.js; path = iphone/qutie.js; sourceTree = "<group>"; };
-		58122E561478739200497EC9 /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default.png; sourceTree = "<group>"; };
-		58122E571478739200497EC9 /* QutieEyesClosed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = QutieEyesClosed.png; sourceTree = "<group>"; };
-		58122E581478739200497EC9 /* QutieEyesOpen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = QutieEyesOpen.png; sourceTree = "<group>"; };
+		58122E6A1478793500497EC9 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		58122E6B1478793500497EC9 /* icon_yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_yellow.png; sourceTree = "<group>"; };
+		58122E6C1478793500497EC9 /* canvastest.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = canvastest.html; sourceTree = "<group>"; };
+		58122E7114787A3A00497EC9 /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default.png; sourceTree = "<group>"; };
+		58122E7214787A3A00497EC9 /* qutie.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = qutie.js; sourceTree = "<group>"; };
+		58122E7314787A3A00497EC9 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
+		58F1C1AC147886C2001E6CE8 /* pet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pet.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -343,9 +347,13 @@
 		58122E44147867EB00497EC9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				58122E531478739200497EC9 /* index.html */,
-				58122E541478739200497EC9 /* qutie.js */,
-				58122E551478739200497EC9 /* img */,
+				58122E7014787A3A00497EC9 /* img */,
+				58122E7214787A3A00497EC9 /* qutie.js */,
+				58122E7314787A3A00497EC9 /* index.html */,
+				58122E6A1478793500497EC9 /* icon.png */,
+				58122E6B1478793500497EC9 /* icon_yellow.png */,
+				58122E6C1478793500497EC9 /* canvastest.html */,
+				58F1C1AC147886C2001E6CE8 /* pet.png */,
 				58122E5014786FA100497EC9 /* sound */,
 			);
 			name = Resources;
@@ -359,15 +367,12 @@
 			name = sound;
 			sourceTree = "<group>";
 		};
-		58122E551478739200497EC9 /* img */ = {
+		58122E7014787A3A00497EC9 /* img */ = {
 			isa = PBXGroup;
 			children = (
-				58122E561478739200497EC9 /* default.png */,
-				58122E571478739200497EC9 /* QutieEyesClosed.png */,
-				58122E581478739200497EC9 /* QutieEyesOpen.png */,
+				58122E7114787A3A00497EC9 /* default.png */,
 			);
-			name = img;
-			path = iphone/img;
+			path = img;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -444,10 +449,12 @@
 				58122DCC147862BE00497EC9 /* InfoPlist.strings in Resources */,
 				58122DD8147862BE00497EC9 /* ViewController.xib in Resources */,
 				58122E43147867D600497EC9 /* scan.wav in Resources */,
-				58122E591478739200497EC9 /* index.html in Resources */,
-				58122E5B1478739200497EC9 /* default.png in Resources */,
-				58122E5C1478739200497EC9 /* QutieEyesClosed.png in Resources */,
-				58122E5D1478739200497EC9 /* QutieEyesOpen.png in Resources */,
+				58122E6D1478793500497EC9 /* icon.png in Resources */,
+				58122E6E1478793500497EC9 /* icon_yellow.png in Resources */,
+				58122E6F1478793500497EC9 /* canvastest.html in Resources */,
+				58122E7414787A3B00497EC9 /* default.png in Resources */,
+				58122E7614787A3B00497EC9 /* index.html in Resources */,
+				58F1C1AD147886C2001E6CE8 /* pet.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -487,7 +494,7 @@
 				58122DD5147862BE00497EC9 /* ViewController.m in Sources */,
 				58122E131478632F00497EC9 /* ReaderOverlayView.m in Sources */,
 				58122E171478633A00497EC9 /* WebViewController.m in Sources */,
-				58122E5A1478739200497EC9 /* qutie.js in Sources */,
+				58122E7514787A3B00497EC9 /* qutie.js in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -673,6 +680,7 @@
 				58122DF2147862BF00497EC9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		58122DF3147862BF00497EC9 /* Build configuration list for PBXNativeTarget "iphoneTests" */ = {
 			isa = XCConfigurationList;
@@ -681,6 +689,7 @@
 				58122DF5147862BF00497EC9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

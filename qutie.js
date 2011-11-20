@@ -84,19 +84,15 @@ function Environment(){
     this.canvasid = "qt-canvas";
 }
 
-
-function QRCode(){
-    
-}
   
 function Qutie(){
     this.currentPic = new Image();
-    this.currentPic.src = "img/QutieEyesOpen.png";
-    this.width = 50.0;
-    this.height = 60.0;
-    this.pos = new Vector(100.0, 100.0);
-    this.vel = new Vector(-3.0, 0.0);
-    this.acc = new Vector(0.0, 1.0);
+    this.currentPic.src = "img/default.png";
+    this.width = 50;
+    this.height = 60;
+    this.pos = new Vector(100, 100);
+    this.vel = new Vector(-3, 0);
+    this.acc = new Vector(0, 1);
     this.ctx = null;
       
     // update
@@ -107,8 +103,8 @@ function Qutie(){
           
         // enforce bounds
         if(!Game.isInBounds(this.pos)){
-            if(this.pos.x > Game.right()){
-                this.pos.x = Game.right();
+            if(this.pos.x+this.width > Game.right()){
+                this.pos.x = Game.right()-this.width;
                 this.vel.x = -this.vel.x;
             }else if(this.pos.x < Game.left()){
                 this.pos.x = Game.left();
@@ -116,7 +112,7 @@ function Qutie(){
             }
     
             // (0, 0) is top-left
-            if(this.pos.y > Game.bottom()){
+            if(this.pos.y+this.height > Game.bottom()){
                this.pos.y = Game.bottom();
                this.vel.y = -this.vel.y;
             }else if(this.pos.y < Game.top()){

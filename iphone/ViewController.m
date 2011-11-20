@@ -28,6 +28,8 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+//        [webView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"cavastest" ofType:@"html"]isDirectory:NO]]];
+    
 }
 
 - (void)viewDidUnload
@@ -153,30 +155,7 @@
     [self performSelector: @selector(playBeep)
                    withObject: nil
                 afterDelay: 0.005];
-    //    WebViewController *wvTutorial = [[WebViewController alloc] initWithNibName:@"WebView" bundle:[NSBundle mainBundle]];
-    //	
-//    [self.navigationController pushViewController:wvTutorial animated:NO];
-    
-    //    WebViewController *aWebViewController = [[WebViewController alloc] initWithNibName:@"WebViewController" bundle:nil];
-    //	aWebViewController.title = @"QR Code Link";
-    //
-    ////    NSString *linkUrl = [NSString stringWithFormat:@"http://%@", thisQRCode.data];
-    //    NSString *headerUrl = [thisQRCode.data substringToIndex:4];
-    //    if([headerUrl isEqualToString:@"http"]){
-    //        aWebViewController.loadURL = [NSURL URLWithString:thisQRCode.data];
-    //        [self.navigationController pushViewController:aWebViewController animated:YES];
-    //        [aWebViewController release];
-    //    }
-    //    if(picker.sourceType == UIImagePickerControllerSourceTypeCamera) {
-    //        if (!TARGET_IPHONE_SIMULATOR) {
-    //            ZBarReaderViewController *_reader = (id)picker;
-    //            _reader.readerView.captureReader.enableReader = NO;
-    //        }
-    //        
-    //        [self performSelector: @selector(playBeep)
-    //                   withObject: nil
-    //                   afterDelay: 0.005];
-    //    }
+
     
 }
 

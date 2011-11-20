@@ -1,0 +1,83 @@
+<html><head>
+        <title>canvastest</title>
+        <style type="text/css">  
+            canvas { border: 1px solid black; }  
+        </style> 
+        
+        <script type="text/javascript">
+            Creature = function(){
+                this.img = new Image();
+                this.img.src = "icon.png";
+                this.posx = 0;
+                this.toggle = 0;
+            };
+            
+            Creature.toggleImage = function(){
+                if(this.toggle == 0 ){
+                    this.toggle = 1;
+                    this.img.src = "icon_yellow.png";
+                }else{
+                    this.toggle = 0;
+                    this.img.src = "icon.png";
+                }
+            };
+            
+            Game = {};        
+            Game.fps = 30;
+            //Game.ctx = document.getElementById('canvas').getContext('2d');
+            Game.ctx = null;
+            Game.creature = new Creature();
+            
+            Game.run = function(){
+              Game.update();
+              Game.draw();            
+            };
+            
+            Game.toggleCreatureImage = function(){
+                if(this.creature.toggle == 0 ){
+                    this.creature.toggle = 1;
+                    this.creature.img.src = "icon_yellow.png";
+                }else{
+                    this.creature.toggle = 0;
+                    this.creature.img.src = "icon.png";
+                }
+            }
+            
+            Game.update = function(){
+               this.creature.posx = this.creature.posx + 1;
+               if(this.creature.posx > 320) this.creature.posx = 0;
+            };
+            
+            Game.draw = function(){
+                Game.ctx.drawImage(this.creature.img, this.creature.posx, 30);
+            };
+            
+            Game.stop = function(){
+                clearInterval(Game._intervalId);
+            }
+            
+            Game.start = function(){
+                Game._intervalId = setInterval(Game.run, 1000 / Game.fps);  
+            }
+            
+            
+            </script>
+    </head>
+    <body>
+        <button onclick="Game.start()">Start</button>
+        <button onclick="Game.stop()">Stop!</button>
+        <button onclick="Game.toggleCreatureImage()">Toggle Image</button>
+        <div id="gamediv" width="320" height="460">
+            <canvas id="canvas" width="320" height="460"></canvas>
+        </div>
+        
+        
+            
+        <script type="text/javascript">
+            // Run            
+            Game.ctx = document.getElementById('canvas').getContext('2d');
+            Game.start();
+            
+        </script>
+    </body>
+</html>
