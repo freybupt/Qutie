@@ -20,7 +20,7 @@
     UITableView *tableView;
     
     IBOutlet UIWebView *webView;
-    
+    NSString *QTstatus;
 //    IBOutlet UIWindow *window;
 //    IBOutlet UINavigationController *navigationController;
 }

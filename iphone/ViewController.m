@@ -14,6 +14,19 @@
 //- (void)setAllowsRubberBanding:(BOOL)allowsRubberBanding;
 //@end
 
+//QTStates.eyes_open = 1;
+//QTStates.eyes_closed = 2;
+//QTStates.crying = 3;
+//QTStates.eating = 4;
+//QTStates.happy = 5;
+//QTStates.winking = 6;
+//QTStates.spooked = 7;
+//QTStates.flying1 = 8;
+//QTStates.flying2 = 9;
+//QTStates.chew1 = 10;
+//QTStates.chew2 = 11;
+//QTStates.eat1 = 12;
+//QTStates.eat2 = 13;
 
 
 @implementation ViewController
@@ -38,7 +51,9 @@
 //    [(UIScrollView*)[webView.subviews objectAtIndex:0]	 setAllowsRubberBanding:NO];
 	// Do any additional setup after loading the view, typically from a nib.
 //        [webView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"cavastest" ofType:@"html"]isDirectory:NO]]];
+    QTstatus = @"index";
     webView.delegate = self;
+    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:QTstatus ofType:@"html"]isDirectory:NO]]];
     
 }
 
@@ -47,12 +62,14 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"index" ofType:@"html"]isDirectory:NO]]];
+    
+    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:QTstatus ofType:@"html"]isDirectory:NO]]];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -145,7 +162,7 @@
     [outputString appendString:@"</body></html>"];
     
     NSString *resultString = sym.data;
-    
+    QTstatus = @"index_spooky";
     [self performSelector: @selector(dismissCamera)
                withObject: nil
                afterDelay: 2.0];
@@ -277,7 +294,7 @@
             [overlay willAppear];
         }
         
-        [self presentModalViewController:reader animated:YES];
+        [self presentModalViewController:reader animated:NO];
     }
     else {
         NSString *title, *message;

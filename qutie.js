@@ -1,3 +1,7 @@
+// JS app rapidly-prototyped by Will Chao @ Startup Weekend Vancouver 2011
+// Full application and resources by the Qutie Team
+
+
 Game = {};
 Game.fps = 24;
 Game.qt = null;
@@ -94,8 +98,10 @@ function Environment(){
     // returns the coordinates of the canvas
     // null -> {x, y}
     this.getCanvasCoordinates = function(){
-        return {x: Util.left(document.getElementById(this.canvasid)),
-                y: Util.top(document.getElementById(this.canvasid))};
+        return {
+            x: Util.left(document.getElementById(this.canvasid)),
+            y: Util.top(document.getElementById(this.canvasid))
+        };
     }
     
     // returns the mouse click coordinates
@@ -103,7 +109,10 @@ function Environment(){
     this.getCanvasMouseXY = function(event){
         xy = Util.getMouseXY(event);
         xyc = this.getCanvasCoordinates();
-        return {x: xy.x - xyc.x, y: xy.y - xyc.y};    
+        return {
+            x: xy.x - xyc.x, 
+            y: xy.y - xyc.y
+        };    
     }
 }
 
@@ -112,6 +121,7 @@ function QRCode(){
     
 }
 
+// States that QT can be in
 QTStates = {};
 QTStates.eyes_open = 1;
 QTStates.eyes_closed = 2;
@@ -120,6 +130,12 @@ QTStates.eating = 4;
 QTStates.happy = 5;
 QTStates.winking = 6;
 QTStates.spooked = 7;
+QTStates.flying1 = 8;
+QTStates.flying2 = 9;
+QTStates.chew1 = 10;
+QTStates.chew2 = 11;
+QTStates.eat1 = 12;
+QTStates.eat2 = 13;
 
 // TODO: offload into resource file! Not here!
 QTStates.getImagePath = function(state){
@@ -131,51 +147,149 @@ QTStates.getImagePath = function(state){
             return "QutieEyesClosed.png";
             break;
         case QTStates.crying:
-            return "Crying.png";
+            return "Qutie-States_0000_Crying.png";
             break;
         case QTStates.eating:
-            return "Eating.png";
+            return "Qutie-States_0001_Eating.png";
             break;
         case QTStates.happy:
-            return "Happy.png";
+            return "Happy_8bit.png";
             break;
         case QTStates.winking:
-            return "Winking.png";
+            return "Qutie-States_0003_Winking.png";
             break;
         case QTStates.spooked:
-            return "Spooked.png";
+            return "Qutie-States_0004_Spooked.png";
+            break;
+        case QTStates.flying1:
+            return "Flying1.png";
+            break;
+        case QTStates.flying2:
+            return "Flying2.png";
+            break;
+        case QTStates.chew1:
+            return "Chew1.png";
+            break;
+        case QTStates.chew2:
+            return "Chew2.png";
+            break;
+        case QTStates.eat1:
+            return "Eat1.png";
+            break;
+        case QTStates.eat2:
+            return "Eat2.png";
             break;
         default:
-            return "Crying.png";
+            return "Qutie-States_0002_Happy.png";
     }
 }
-  
+
 function Qutie(){
     this.currentPic = new Image();
-    this.currentPic.src = "Spooked.png";
+    this.currentPic.src = "QutieEyesOpen.png";
     this.width = 150.0;
-    this.height = 130.0;
-    this.pos = new Vector(100.0, 100.0);
-    this.vel = new Vector(-3.0, 0.0);
-    this.acc = new Vector(0.0, 1.0);
-    this.ctx = null;
+    this.height = 130.0;            
+    this.pos = new Vector(100.0, 100.0);    // position
+    this.vel = new Vector(-3.0, -1.0);      // velocity
+    this.acc = new Vector(0.0, 1.0);        // acceleration
+    this.ctx = null;                        // canvas context
+    this.power = {
+        min:-2, // power bar renders 0, behavior and mood are affected though 
+        max:7, 
+        curr:5
+    };   // Qutie's "power" level
     
-    this.state_eyes = QTStates.happy; // not used anymore
+    
+    this.tempStateTimer = 0;
+    
     this.current_emotion = QTStates.happy;
+    this.current_movement = null; // hack, all simple movements are stored in an array
 
-    
-    this.isHit = function(x, y){
-        return ((this.pos.x < x && x < (this.pos.x + this.width)) &&
-               (this.pos.y < y && y < (this.pos.y + this.height)));
+
+    // on click
+    this.onclick = function(x, y){
+        if(this.isHit(x,y)){
+            this.updateRandom();
+        }
     }
     
+    // if a tracking div was clicked, call this function directly
+    this.onclickhack = function(event){
+        alert("you clicked me!");
+    }
+    
+    // major hack to try and get something clickable on the iPhone
+    this.updateQtTracker = function(){
+        /**
+         * <div id="clickableInvisible" style="border: 1px solid #CCC; width: 200px; height: 200px; position: absolute; top: 75px; left: 17px;" onClick="alert('you clicked me!');"></div>
+			</div>
+         */
+        var cxy = Game.environment.getCanvasCoordinates();
+        
+        var trackerstring =
+        "<div id='qt-tracker' style='width:"+this.width+"px; height:"+this.height+"px; border: 1px solid #000; position:absolute; top:"+(this.pos.y+cxy.y)+"px; left:"+(this.pos.x+cxy.x)+"px;'"
+        + "onclick='Game.qt.onclickhack(event)'>"            
+        + "</div>";
+        document.getElementById("clickhack").innerHTML = trackerstring;
+    }
+    
+    
     ///////////////////////////////////////////////////////////////////////////
-    // Controller
+    // Updating Position
     ///////////////////////////////////////////////////////////////////////////
-          
-    // update
-    this.update = function(){
-               
+    
+    // pinball bounce!
+    this.updatePinballBounce = function(){
+        this.updatePinballBounceX();
+        this.updatePinballBounceY();
+    }
+    
+    this.updatePinballBounceX = function(){
+        this.pos = new Vector(this.pos.x+this.vel.x, this.pos.y);
+        if(this.vel.x < 0){
+            if(this.pos.x<0){
+                this.pos.x = 0;
+                this.vel.x = -this.vel.x;
+            }
+        }else{
+            if(this.pos.x+this.width > Game.right()){
+                this.pos.x = Game.right()-this.width;
+                this.vel.x = -this.vel.x;
+            }
+        }
+    }
+    
+    
+    this.updatePinballBounceY = function(){
+        this.pos = new Vector(this.pos.x, this.pos.y+this.vel.y);
+        if(this.vel.y < 0){
+            if(this.pos.y<0){
+                this.pos.y = 0;
+                this.vel.y = -this.vel.y;
+            }
+        }else{
+            if(this.pos.y+this.height > Game.bottom()){
+                this.pos.y = Game.bottom()-this.height;
+                this.vel.y = -this.vel.y;
+            }
+        }
+    }
+    
+    // a horizontal marquee movement
+    this.updateHorizontalMarquee = function(){
+        this.pos = new Vector(this.pos.x+this.vel.x, this.pos.y);
+        
+        // warp to other size once past boundary
+        if(this.vel.x < 0){ // moving left
+            if(this.pos.x+this.width < 0) this.pos.x = Game.right();
+        }else{ // moving right
+            if(this.pos.x > Game.right()) this.pos.x = 0-this.width;
+        }
+    }
+    
+    // updates the movement to a gravity-based bounce, constrained in the canvas
+    // remember to set sane amounts for vel and acc first
+    this.updateBounceCanvas = function(){
         this.vel = new Vector(this.vel.x+this.acc.x, this.vel.y+this.acc.y);
         this.pos = new Vector(this.pos.x+this.vel.x, this.pos.y+this.vel.y);
         
@@ -199,17 +313,39 @@ function Qutie(){
             }else if(this.pos.y < Game.top()){
                 this.pos.y = Game.top();
                 this.vel.y = -this.vel.y;
-            }
-            
+            } 
         }
-               
     }
+    
+    
+    // updates the  current simple movement with one of the registered functions
+    // TODO: do this in a better way!
+    this.updateRandom = function(){
+        // register all of the zero-parameter movements here
+        var array_of_simple_movements = [
+        this.updateBounceCanvas,
+        this.updateHorizontalMarquee,
+        this.updatePinballBounce,
+        this.updatePinballBounceX,
+        this.updatePinballBounceY,
+        ];
         
-    // on click
-    this.onclick = function(x, y){
-        if(this.isHit(x,y)){
-            this.toggleEyes();
-        }
+        this.current_movement = array_of_simple_movements[
+        Util.randInt(array_of_simple_movements.length)];
+    }
+    
+    ///////////////////////////////////////////////////////////////////////////
+    // Controller
+    ///////////////////////////////////////////////////////////////////////////
+          
+    // update
+    this.update = function(){
+       
+        if(this.current_movement == null)this.updateRandom();
+        this.current_movement();
+        
+    //this.updateBounceCanvas();
+    //this.updateQtTracker();
     }
     
     
@@ -238,7 +374,7 @@ function Qutie(){
     // Draws the current picture
     this.drawCurrentPicture = function(ctx){
         ctx.drawImage(this.currentPic, this.pos.x, this.pos.y, this.width, this.height);
-        //Util.drawPicByDiv(this.currentPic.src, this.pos.x, this.pos.y, this.width, this.height);
+    //Util.drawPicByDiv(this.currentPic.src, this.pos.x, this.pos.y, this.width, this.height);
     }
        
     
@@ -260,7 +396,15 @@ function Qutie(){
         }else{
             this.closeEyes();
         }
-    }      
+    }
+    
+    ///////////////////////////////////////////////////////////////////////////
+    // Util
+    ///////////////////////////////////////////////////////////////////////////
+    this.isHit = function(x, y){
+        return ((this.pos.x < x && x < (this.pos.x + this.width)) &&
+            (this.pos.y < y && y < (this.pos.y + this.height)));
+    }
 }
 
   
@@ -338,7 +482,7 @@ Util.getMouseXY = function(event){
     return {
         x: event.pageX, 
         y:event.pageY
-        };
+    };
 }
 
 // Find the left coordinate of an object
@@ -376,7 +520,13 @@ Util.top = function(obj)
 // TODO: fix, not working
 Util.drawPicByDiv = function(imgStr, x, y, w, h){
     document.getElementById('qt').innerHTML = 
-        "<div id='qtpic' style={position: fixed; left:"+x+";top:"+y+";width:"+w+"px;height:"+h+"px;}>"
-        +"<img src='"+imgStr+"' style={width:100%; height:100%;}></img>"      
-        +"</div>";
+    "<div id='qtpic' style={position: fixed; left:"+x+";top:"+y+";width:"+w+"px;height:"+h+"px;}>"
+    +"<img src='"+imgStr+"' style={width:"+w+"; height:"+h+";}></img>"      
+    +"</div>";
+}
+
+// returns a random integer
+Util.randInt = function(max){
+    if(max < 0) return 0;
+    return Math.floor(Math.random()*max);
 }
