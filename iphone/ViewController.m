@@ -162,7 +162,52 @@
     [outputString appendString:@"</body></html>"];
     
     NSString *resultString = sym.data;
+    
     QTstatus = @"index_spooky";
+    
+    //change status if qr code is defined
+    if ([resultString isEqualToString:@"qutie_crying"]) {
+        QTstatus = @"index_crying";
+    }
+    
+    if ([resultString isEqualToString:@"qutie_winking"]) {
+        QTstatus = @"index_winking";
+    }
+    if ([resultString isEqualToString:@"qutie_happy1"]) {
+        QTstatus = @"index_happy1";
+    }
+    if ([resultString isEqualToString:@"qutie_happy2"]) {
+        QTstatus = @"index_happy2";
+    }
+    if ([resultString isEqualToString:@"qutie_flying1"]) {
+        QTstatus = @"index_flying1";
+    }
+    if ([resultString isEqualToString:@"qutie_flying2"]) {
+        QTstatus = @"index_flying2";
+    }
+    if ([resultString isEqualToString:@"qutie_eating1"]) {
+        QTstatus = @"index_eating1";
+    }
+    if ([resultString isEqualToString:@"qutie_eating2"]) {
+        QTstatus = @"index_eating2";
+    }
+    if ([resultString isEqualToString:@"qutie_chew1"]) {
+        QTstatus = @"index_chew1";
+    }
+    if ([resultString isEqualToString:@"qutie_chew2"]) {
+        QTstatus = @"index_chew2";
+    }
+    if ([resultString isEqualToString:@"qutie_spooky"]) {
+        QTstatus = @"index_spooky";
+    }
+    if ([resultString isEqualToString:@"qutie_drunk"]) {
+        QTstatus = @"index_drunk";
+    }
+    if ([resultString isEqualToString:@"qutie_fly"]) {
+        QTstatus = @"index_fly";
+    }
+    
+    
     [self performSelector: @selector(dismissCamera)
                withObject: nil
                afterDelay: 2.0];
