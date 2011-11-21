@@ -51,7 +51,7 @@
 //    [(UIScrollView*)[webView.subviews objectAtIndex:0]	 setAllowsRubberBanding:NO];
 	// Do any additional setup after loading the view, typically from a nib.
 //        [webView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"cavastest" ofType:@"html"]isDirectory:NO]]];
-    QTstatus = @"index_chew1";
+    QTstatus = @"index";
     linkResult = @"";
     soundTitle = @"dance";
     backButton.hidden = YES;
@@ -169,10 +169,6 @@
 #pragma mark ZBarReaderDelegate
 - (void)imagePickerController: (UIImagePickerController*) picker didFinishPickingMediaWithInfo: (NSDictionary*) info {
     
-    [self performSelector: @selector(playBeep)
-               withObject: nil
-               afterDelay: 0.001];
-    
     
     UIImage *image = [info objectForKey: UIImagePickerControllerOriginalImage];
     
@@ -206,7 +202,7 @@
     
     linkResult = resultString;
     
-    QTstatus = @"index_spooky";
+    QTstatus = @"index";
     
     //change status if qr code is defined
     if ([resultString isEqualToString:@"qutie_crying"]) {
@@ -223,6 +219,7 @@
     }
     if ([resultString isEqualToString:@"qutie_happy2"]) {
         QTstatus = @"index_happy2";
+        soundTitle = @"laugh";
     }
     if ([resultString isEqualToString:@"qutie_flying1"]) {
         QTstatus = @"index_flying1";
@@ -232,10 +229,12 @@
     }
     if ([resultString isEqualToString:@"qutie_eating1"]) {
         QTstatus = @"index_eating1";
+        soundTitle = @"laugh";
 
     }
     if ([resultString isEqualToString:@"qutie_eating2"]) {
         QTstatus = @"index_eating2";
+        soundTitle = @"laugh";
         
     }
     if ([resultString isEqualToString:@"qutie_chew1"]) {
@@ -246,7 +245,7 @@
     }
     if ([resultString isEqualToString:@"qutie_spooky"]) {
         QTstatus = @"index_spooky";
-        soundTitle = @"scream1";
+        soundTitle = @"laugh2";
     }
 //    if ([resultString isEqualToString:@"qutie_drunk"]) {
 //        QTstatus = @"index_drunk";
@@ -258,12 +257,19 @@
     if([headerUrl isEqualToString:@"http"]){
         QTstatus = @"site";
     }
-
-//    [self performSelector: @selector(dismissCamera)
-//               withObject: nil
-//               afterDelay: 1.0];
+    if(beep){
+        [beep stop];
+    }
+    [self performSelector: @selector(playBeep)
+               withObject: nil
+               afterDelay: 0.001];
     
-    [self dismissCamera];
+    [self performSelector: @selector(dismissCamera)
+               withObject: nil
+               afterDelay: 1.0];
+    
+
+    
     
     //don't remove, for alert of link
 //    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Got it!" message:resultString delegate:self cancelButtonTitle:nil otherButtonTitles:@"Feed it!", nil];
@@ -272,7 +278,7 @@
 }
 
 - (void)dismissCamera{
-    [self dismissModalViewControllerAnimated: NO];
+    [self dismissModalViewControllerAnimated: YES];
 
 }
 //- (void)webViewDidFinishLoad:(UIWebView *)wView {
@@ -351,7 +357,7 @@
     soundTitle = @"crunching";
     [self performSelector: @selector(playBeep)
                withObject: nil
-               afterDelay: 0.005];
+               afterDelay: 1];
     // test plain image picker
     //    UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
     // //   imagePicker.delegate = self;

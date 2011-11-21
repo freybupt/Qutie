@@ -91,6 +91,8 @@
 		58A1BE3D1479B3CB0030CC42 /* drunk.wav in Resources */ = {isa = PBXBuildFile; fileRef = 58A1BE391479B3CB0030CC42 /* drunk.wav */; };
 		58A1BE3F1479BB4C0030CC42 /* scream1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 58A1BE3E1479BB4C0030CC42 /* scream1.wav */; };
 		58A1BE411479BBAE0030CC42 /* cry2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 58A1BE401479BBAE0030CC42 /* cry2.wav */; };
+		58A1BE431479C1620030CC42 /* laugh.wav in Resources */ = {isa = PBXBuildFile; fileRef = 58A1BE421479C1620030CC42 /* laugh.wav */; };
+		58A1BE451479C4760030CC42 /* laugh2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 58A1BE441479C4760030CC42 /* laugh2.wav */; };
 		58CB815D1478D0820063564B /* crunching.wav in Resources */ = {isa = PBXBuildFile; fileRef = 58CB81571478D0820063564B /* crunching.wav */; };
 		58CB815E1478D0820063564B /* snoring.wav in Resources */ = {isa = PBXBuildFile; fileRef = 58CB81581478D0820063564B /* snoring.wav */; };
 		58CB815F1478D0820063564B /* spring.wav in Resources */ = {isa = PBXBuildFile; fileRef = 58CB81591478D0820063564B /* spring.wav */; };
@@ -224,6 +226,8 @@
 		58A1BE391479B3CB0030CC42 /* drunk.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = drunk.wav; sourceTree = "<group>"; };
 		58A1BE3E1479BB4C0030CC42 /* scream1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = scream1.wav; sourceTree = "<group>"; };
 		58A1BE401479BBAE0030CC42 /* cry2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = cry2.wav; sourceTree = "<group>"; };
+		58A1BE421479C1620030CC42 /* laugh.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = laugh.wav; sourceTree = "<group>"; };
+		58A1BE441479C4760030CC42 /* laugh2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = laugh2.wav; sourceTree = "<group>"; };
 		58CB81571478D0820063564B /* crunching.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = crunching.wav; path = sound/crunching.wav; sourceTree = "<group>"; };
 		58CB81581478D0820063564B /* snoring.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = snoring.wav; path = sound/snoring.wav; sourceTree = "<group>"; };
 		58CB81591478D0820063564B /* spring.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = spring.wav; path = sound/spring.wav; sourceTree = "<group>"; };
@@ -493,8 +497,10 @@
 			isa = PBXGroup;
 			children = (
 				58A1BE3E1479BB4C0030CC42 /* scream1.wav */,
+				58A1BE421479C1620030CC42 /* laugh.wav */,
 				58CB81571478D0820063564B /* crunching.wav */,
 				58A1BE401479BBAE0030CC42 /* cry2.wav */,
+				58A1BE441479C4760030CC42 /* laugh2.wav */,
 				58CB81581478D0820063564B /* snoring.wav */,
 				58A1BE361479B3CB0030CC42 /* eating.wav */,
 				58A1BE371479B3CB0030CC42 /* chew2.wav */,
@@ -636,6 +642,8 @@
 				58A1BE3D1479B3CB0030CC42 /* drunk.wav in Resources */,
 				58A1BE3F1479BB4C0030CC42 /* scream1.wav in Resources */,
 				58A1BE411479BBAE0030CC42 /* cry2.wav in Resources */,
+				58A1BE431479C1620030CC42 /* laugh.wav in Resources */,
+				58A1BE451479C4760030CC42 /* laugh2.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -744,7 +752,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -762,7 +770,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -772,10 +780,11 @@
 		58122DF1147862BF00497EC9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iphone/iphone-Prefix.pch";
 				INFOPLIST_FILE = "iphone/iphone-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/iphone/ZBarSDK/Headers/ZBarSDK\"",
@@ -783,7 +792,8 @@
 					"\"$(SRCROOT)\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				VALID_ARCHS = "i386 armv6 armv7";
+				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = "armv6 armv7";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -791,10 +801,11 @@
 		58122DF2147862BF00497EC9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iphone/iphone-Prefix.pch";
 				INFOPLIST_FILE = "iphone/iphone-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/iphone/ZBarSDK/Headers/ZBarSDK\"",
@@ -802,7 +813,8 @@
 					"\"$(SRCROOT)\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				VALID_ARCHS = "i386 armv6 armv7";
+				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = "armv6 armv7";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
