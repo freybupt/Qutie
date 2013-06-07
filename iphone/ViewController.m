@@ -31,7 +31,7 @@
 
 @implementation ViewController
 
-@synthesize listItems, reader, overlay, webView, backButton;
+@synthesize listItems, reader, overlay, webView, backButton, QTstatus;
 
 //@synthesize window, navigationController;
 
@@ -51,7 +51,7 @@
 //    [(UIScrollView*)[webView.subviews objectAtIndex:0]	 setAllowsRubberBanding:NO];
 	// Do any additional setup after loading the view, typically from a nib.
 //        [webView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"cavastest" ofType:@"html"]isDirectory:NO]]];
-    QTstatus = @"index";
+    self.QTstatus = @"index_hangout";
     linkResult = @"";
     soundTitle = @"dance";
     backButton.hidden = YES;
@@ -60,12 +60,13 @@
 //    [backButton setImage:[UIImage imageNamed:@"goBack.png"] forState:UIControlStateNormal];
 //    [backButton addTarget:self action:@selector(goBack:) forControlEvents:UIControlEventTouchUpInside];
     
-    [self performSelector: @selector(playBeep)
-               withObject: nil
-               afterDelay: 0.001];
+//    [self performSelector: @selector(playBeep)
+//               withObject: nil
+//               afterDelay: 0.001];
 
     webView.delegate = self;
-    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:QTstatus ofType:@"html"]isDirectory:NO]]];
+    self.QTstatus = @"index_hangout";
+    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:self.QTstatus ofType:@"html"]isDirectory:NO]]];
     
 }
 
@@ -81,7 +82,7 @@
 {
     [super viewWillAppear:animated];
     
-    if ([QTstatus isEqualToString:@"site"]) {
+    if ([self.QTstatus isEqualToString:@"site"]) {
         //Create a URL object from scaned link
         NSURL *url = [NSURL URLWithString: linkResult];
         
@@ -96,14 +97,14 @@
     else{
         
         backButton.hidden = YES;
-        [webView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:QTstatus ofType:@"html"]isDirectory:NO]]];
+        [webView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:self.QTstatus ofType:@"html"]isDirectory:NO]]];
     }
 }
 
 
 - (IBAction)goBack:(id)sender{
-    QTstatus = @"index";
-    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:QTstatus ofType:@"html"]isDirectory:NO]]];
+    self.QTstatus = @"index";
+    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:self.QTstatus ofType:@"html"]isDirectory:NO]]];
     backButton.hidden = YES;
     
 }
@@ -202,60 +203,60 @@
     
     linkResult = resultString;
     
-    QTstatus = @"index";
+    self.QTstatus = @"index";
     
     //change status if qr code is defined
     if ([resultString isEqualToString:@"qutie_crying"]) {
-        QTstatus = @"index_crying";
+        self.QTstatus = @"index_crying";
         soundTitle = @"cry2";
     }
     
     if ([resultString isEqualToString:@"qutie_winking"]) {
-        QTstatus = @"index_winking";
+        self.QTstatus = @"index_winking";
     }
     if ([resultString isEqualToString:@"qutie_happy1"]) {
-        QTstatus = @"index_happy1";
+        self.QTstatus = @"index_happy1";
         soundTitle = @"dance";
     }
     if ([resultString isEqualToString:@"qutie_happy2"]) {
-        QTstatus = @"index_happy2";
+        self.QTstatus = @"index_happy2";
         soundTitle = @"laugh";
     }
     if ([resultString isEqualToString:@"qutie_flying1"]) {
-        QTstatus = @"index_flying1";
+        self.QTstatus = @"index_flying1";
     }
     if ([resultString isEqualToString:@"qutie_flying2"]) {
-        QTstatus = @"index_flying2";
+        self.QTstatus = @"index_flying2";
     }
     if ([resultString isEqualToString:@"qutie_eating1"]) {
-        QTstatus = @"index_eating1";
+        self.QTstatus = @"index_eating1";
         soundTitle = @"laugh";
 
     }
     if ([resultString isEqualToString:@"qutie_eating2"]) {
-        QTstatus = @"index_eating2";
+        self.QTstatus = @"index_eating2";
         soundTitle = @"laugh";
         
     }
     if ([resultString isEqualToString:@"qutie_chew1"]) {
-        QTstatus = @"index_chew1";
+        self.QTstatus = @"index_chew1";
     }
     if ([resultString isEqualToString:@"qutie_chew2"]) {
-        QTstatus = @"index_chew2";
+        self.QTstatus = @"index_chew2";
     }
     if ([resultString isEqualToString:@"qutie_spooky"]) {
-        QTstatus = @"index_spooky";
+        self.QTstatus = @"index_spooky";
         soundTitle = @"laugh2";
     }
 //    if ([resultString isEqualToString:@"qutie_drunk"]) {
-//        QTstatus = @"index_drunk";
+//        self.QTstatus = @"index_drunk";
 //    }
     if ([resultString isEqualToString:@"qutie_fly"]) {
-        QTstatus = @"index_flying";
+        self.QTstatus = @"index_flying";
     }
      NSString *headerUrl = [resultString substringToIndex:4];
     if([headerUrl isEqualToString:@"http"]){
-        QTstatus = @"site";
+        self.QTstatus = @"site";
     }
     if(beep){
         [beep stop];

@@ -33,6 +33,7 @@
 @property (nonatomic, retain) ZBarReaderViewController *reader;
 @property (nonatomic, retain) ReaderOverlayView *overlay;
 @property (nonatomic, retain) UIWebView *webView;
+@property (nonatomic, retain) NSString *QTstatus;
 
 @property (nonatomic, retain) IBOutlet UIButton *backButton;
 
